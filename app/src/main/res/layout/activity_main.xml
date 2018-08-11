@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:seekarc="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    tools:layout_editor_absoluteY="73dp">
+
+    <TextView
+        android:id="@+id/txtViewColor"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="115dp"
+        android:gravity="center_horizontal"
+        android:text="@string/txtView_color"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        app:layout_constraintEnd_toEndOf="@+id/txtViewColorValue"
+        app:layout_constraintStart_toStartOf="@+id/txtViewColorValue"
+        app:layout_constraintTop_toTopOf="@+id/skArcColor" />
+
+    <TextView
+        android:id="@+id/txtViewColorValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtViewDefaultValue"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        app:layout_constraintBottom_toBottomOf="@+id/skArcColor"
+        app:layout_constraintEnd_toEndOf="@+id/skArcColor"
+        app:layout_constraintStart_toStartOf="@+id/skArcColor"
+        app:layout_constraintTop_toTopOf="@+id/skArcColor" />
+
+    <TextView
+        android:id="@+id/txtViewSound"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="115dp"
+        android:gravity="center_horizontal"
+        android:text="@string/txtView_sound"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/skArcSound" />
+
+    <TextView
+        android:id="@+id/txtViewSoundValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtViewDefaultValue"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        app:layout_constraintBottom_toBottomOf="@+id/skArcSound"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/skArcSound" />
+
+    <TextView
+        android:id="@+id/txtViewPicture"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="115dp"
+        android:gravity="center_horizontal"
+        android:text="@string/txtView_picture"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        app:layout_constraintEnd_toEndOf="@+id/txtViewPictureValue"
+        app:layout_constraintStart_toStartOf="@+id/txtViewPictureValue"
+        app:layout_constraintTop_toTopOf="@+id/skArcPicture" />
+
+    <TextView
+        android:id="@+id/txtViewPictureValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtViewDefaultValue"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        app:layout_constraintBottom_toBottomOf="@+id/skArcPicture"
+        app:layout_constraintEnd_toEndOf="@+id/skArcPicture"
+        app:layout_constraintStart_toStartOf="@+id/skArcPicture"
+        app:layout_constraintTop_toTopOf="@+id/skArcPicture" />
+
+    <TextView
+        android:id="@+id/txtViewDelayMin"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="115dp"
+        android:gravity="center_horizontal"
+        android:text="@string/txtView_delay_min"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/nptNumberDelayMin"
+        app:layout_constraintStart_toStartOf="@+id/nptNumberDelayMin"
+        app:layout_constraintTop_toTopOf="@+id/skArcDelayMin" />
+
+    <TextView
+        android:id="@+id/txtViewDelayMax"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="115dp"
+        android:gravity="center_horizontal"
+        android:text="@string/txtView_delay_max"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/skArcDelayMax" />
+
+    <TextView
+        android:id="@+id/txtViewShowTime"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="115dp"
+        android:gravity="center_horizontal"
+        android:text="@string/txtView_time_show"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/nptNumberShowTime"
+        app:layout_constraintStart_toStartOf="@+id/nptNumberShowTime"
+        app:layout_constraintTop_toTopOf="@+id/skArcShowTime" />
+
+    <EditText
+        android:id="@+id/nptNumberDelayMin"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:ems="10"
+        android:gravity="center_vertical|end"
+        android:hint="@string/txtViewHint_delay_min"
+        android:inputType="number"
+        android:singleLine="true"
+        android:text="@string/default_value_delay_min"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/skArcDelayMin"
+        app:layout_constraintEnd_toEndOf="@+id/skArcDelayMin"
+        app:layout_constraintStart_toStartOf="@+id/skArcDelayMin"
+        app:layout_constraintTop_toTopOf="@+id/skArcDelayMin" />
+
+    <EditText
+        android:id="@+id/nptNumberDelayMax"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:ems="10"
+        android:gravity="center_vertical|end"
+        android:hint="@string/txtViewHint_delay_min"
+        android:inputType="number"
+        android:singleLine="true"
+        android:text="@string/default_value_delay_max"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        app:layout_constraintBottom_toBottomOf="@+id/skArcDelayMax"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/skArcDelayMax" />
+
+    <EditText
+        android:id="@+id/nptNumberShowTime"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:ems="10"
+        android:gravity="center_vertical|end"
+        android:hint="@string/txtViewHint_delay_min"
+        android:inputType="number"
+        android:singleLine="true"
+        android:text="@string/default_value_time_show"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        app:layout_constraintBottom_toBottomOf="@+id/skArcShowTime"
+        app:layout_constraintEnd_toEndOf="@+id/skArcShowTime"
+        app:layout_constraintStart_toStartOf="@+id/skArcShowTime"
+        app:layout_constraintTop_toTopOf="@+id/skArcShowTime"/>
+
+    <com.triggertrap.seekarc.SeekArc
+        android:id="@+id/skArcColor"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_gravity="center"
+        android:padding="30dp"
+        app:arcWidth="1dp"
+        app:clockwise="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:max="5"
+        app:progress="0"
+        app:rotation="180"
+        app:startAngle="30"
+        app:sweepAngle="300"
+        seekarc:touchInside="true" />
+
+    <com.triggertrap.seekarc.SeekArc
+        android:id="@+id/skArcSound"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_gravity="center"
+        android:padding="30dp"
+        app:arcWidth="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:max="4"
+        app:progress="0"
+        app:rotation="180"
+        app:startAngle="30"
+        app:sweepAngle="300"
+        seekarc:touchInside="true" />
+
+    <com.triggertrap.seekarc.SeekArc
+        android:id="@+id/skArcPicture"
+        touchInside="true"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_gravity="center"
+        android:padding="30dp"
+        app:arcWidth="1dp"
+        app:clockwise="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:max="5"
+        app:progress="0"
+        app:rotation="180"
+        app:startAngle="30"
+        app:sweepAngle="300" />
+
+    <com.triggertrap.seekarc.SeekArc
+        android:id="@+id/skArcDelayMin"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:padding="30dp"
+        app:arcWidth="1dp"
+        app:clockwise="true"
+        app:layout_constraintEnd_toEndOf="@+id/txtViewColor"
+        app:layout_constraintStart_toStartOf="@+id/txtViewColor"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewColor"
+        app:max="20000"
+        app:progress="500"
+        app:rotation="180"
+        app:startAngle="30"
+        app:sweepAngle="300"
+        app:touchInside="true" />
+
+    <com.triggertrap.seekarc.SeekArc
+        android:id="@+id/skArcDelayMax"
+        touchInside="true"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:padding="30dp"
+        app:arcWidth="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewSound"
+        app:max="4"
+        app:progress="0"
+        app:rotation="180"
+        app:startAngle="30"
+        app:sweepAngle="300" />
+
+    <com.triggertrap.seekarc.SeekArc
+        android:id="@+id/skArcShowTime"
+        touchInside="true"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:padding="30dp"
+        app:arcWidth="1dp"
+        app:clockwise="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewPicture"
+        app:max="5"
+        app:progress="0"
+        app:rotation="180"
+        app:startAngle="30"
+        app:sweepAngle="300" />
+
+    <Button
+        android:id="@+id/buttonStart"
+        android:layout_width="352dp"
+        android:layout_height="98dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:onClick="start"
+        android:text="@string/btn_start"
+        android:textSize="30sp"
+        android:theme="@style/Base.Widget.AppCompat.Button"
+        android:typeface="normal"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

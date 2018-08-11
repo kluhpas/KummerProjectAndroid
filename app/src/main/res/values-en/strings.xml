@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="txtView_color">Colors</string>
+    <string name="txtView_sound">Sounds</string>
+    <string name="txtView_picture">Pictures</string>
+    <string name="spnr_color">Choose the number of colors</string>
+    <string name="txtView_delay_min">Minimum time</string>
+    <string name="txtView_delay_max">Maximum time</string>
+    <string name="txtView_time_show">Vision time</string>
+    <string name="txtViewHint_delay_min">milliseconds</string>
+    <string name="dummy_button">Exit</string>
+    <string name="imgView_content_description">Pictures</string>
+    <string name="dialog_title">Error</string>
+    <string name="dialog_message_number">Invalid value</string>
+    <string name="dialog_message_signal">No signal selected</string>
+    <string name="txtViewInfo_sound_desc">È possibile attivare fino a 4 differenti suoni.\nSelezionando \"0\" non si attiverà questo tipo di segnale.\nI seguenti suoni si attiveranno selezionando:\n
+        \"1\": BEEP CORTO.\n
+        \"2\": BEEP CORTO, BEEP LUNGO.\n
+        \"3\": BEEP CORTO, BEEP LUNGO, BOOP CORTO.\n
+        \"4\": BEEP CORTO, BEEP LUNGO, BOOP CORTO, DOPPIO BEEP.</string>
+    <string name="txtViewInfo_showTime_desc">Questo parametro stabilisce per quanti millisecondi il segnale rimarrà visibile sullo schermo.\nAd esempio, inserendo 1000 l\'immagine o il colore rimarranno visibili per un secondo, prima di essere cancellati.</string>
+    <string name="txtViewInfo_picture_desc">È possibile attivare fino a 5 differenti immagini.\nSelezionando \"0\" non si attiverà questo tipo di segnale.\nLe seguenti immagini si attiveranno selezionando:\n
+        \"1\": CERCHIO.\n
+        \"2\": CERCHIO, QUADRATO.\n
+        \"3\": CERCHIO, QUADRATO, TRIANGOLO.\n
+        \"4\": CERCHIO, QUADRATO, TRIANGOLO, STELLA.\n
+        \"5\": CERCHIO, QUADRATO, TRIANGOLO, STELLA, FIOCCO DI NEVE.</string>
+    <string name="txtViewInfo_delayMin_desc">Questo parametro stabilisce il tempo minimo, in millisecondi, tra un segnale e l\'altro.\nSe \"Tempo minimo\" e \"Tempo massimo\" risultano differenti, allora si calcolerà un tempo random differente tra un segnale e l\'altro.\nSe \"Tempo minimo\" e \"Tempo massimo\" risultano uguali, allora si calcolerà un tempo costante per tutta la durata della sessione.</string>
+    <string name="txtViewInfo_delayMax_desc">Questo parametro stabilisce il tempo massimo, in millisecondi, tra un segnale e l\'altro.\nSe \"Tempo minimo\" e \"Tempo massimo\" risultano differenti, allora si calcolerà un tempo random differente tra un segnale e l\'altro.\nSe \"Tempo minimo\" e \"Tempo massimo\" risultano uguali, allora si calcolerà un tempo costante per tutta la durata della sessione.</string>
+    <string name="txtViewInfo_color_desc">È possibile attivare fino a 5 differenti colori.\nSelezionando \"0\" non si attiverà questo tipo di segnale.\nI seguenti colori si attiveranno selezionando:\n
+        \"1\": ROSSO.\n
+        \"2\": ROSSO, BLU.\n
+        \"3\": ROSSO, BLU, GIALLO.\n
+        \"4\": ROSSO, BLU, GIALLO, VERDE.\n
+        \"5\": ROSSO, BLU, GIALLO, VERDE, ROSA.</string>
+    <string name="dialog_message_number_min">The Maximum delay can\'t be less than the Minimum delay</string>
+    <string name="txtView_dev_info">App progettata e sviluppata da Andrea Rota\nPer qualsiasi problema o consiglio scrivete a andrea.rota.98@gmail.com</string>
+</resources>
