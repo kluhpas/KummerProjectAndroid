@@ -3,36 +3,46 @@
     <string name="txtView_color">Colors</string>
     <string name="txtView_sound">Sounds</string>
     <string name="txtView_picture">Pictures</string>
-    <string name="spnr_color">Choose the number of colors</string>
     <string name="txtView_delay_min">Minimum time</string>
     <string name="txtView_delay_max">Maximum time</string>
     <string name="txtView_time_show">Vision time</string>
     <string name="txtViewHint_delay_min">milliseconds</string>
     <string name="dummy_button">Exit</string>
     <string name="imgView_content_description">Pictures</string>
-    <string name="dialog_title">Error</string>
-    <string name="dialog_message_number">Invalid value</string>
-    <string name="dialog_message_signal">No signal selected</string>
-    <string name="txtViewInfo_sound_desc">È possibile attivare fino a 4 differenti suoni.\nSelezionando \"0\" non si attiverà questo tipo di segnale.\nI seguenti suoni si attiveranno selezionando:\n
-        \"1\": BEEP CORTO.\n
-        \"2\": BEEP CORTO, BEEP LUNGO.\n
-        \"3\": BEEP CORTO, BEEP LUNGO, BOOP CORTO.\n
-        \"4\": BEEP CORTO, BEEP LUNGO, BOOP CORTO, DOPPIO BEEP.</string>
+    <string name="txtViewInfo_sound_desc">You can select up to 4 sounds.</string>
     <string name="txtViewInfo_showTime_desc">Questo parametro stabilisce per quanti millisecondi il segnale rimarrà visibile sullo schermo.\nAd esempio, inserendo 1000 l\'immagine o il colore rimarranno visibili per un secondo, prima di essere cancellati.</string>
-    <string name="txtViewInfo_picture_desc">È possibile attivare fino a 5 differenti immagini.\nSelezionando \"0\" non si attiverà questo tipo di segnale.\nLe seguenti immagini si attiveranno selezionando:\n
-        \"1\": CERCHIO.\n
-        \"2\": CERCHIO, QUADRATO.\n
-        \"3\": CERCHIO, QUADRATO, TRIANGOLO.\n
-        \"4\": CERCHIO, QUADRATO, TRIANGOLO, STELLA.\n
-        \"5\": CERCHIO, QUADRATO, TRIANGOLO, STELLA, FIOCCO DI NEVE.</string>
+    <string name="txtViewInfo_picture_desc">You can select up to 5 pictures.</string>
     <string name="txtViewInfo_delayMin_desc">Questo parametro stabilisce il tempo minimo, in millisecondi, tra un segnale e l\'altro.\nSe \"Tempo minimo\" e \"Tempo massimo\" risultano differenti, allora si calcolerà un tempo random differente tra un segnale e l\'altro.\nSe \"Tempo minimo\" e \"Tempo massimo\" risultano uguali, allora si calcolerà un tempo costante per tutta la durata della sessione.</string>
     <string name="txtViewInfo_delayMax_desc">Questo parametro stabilisce il tempo massimo, in millisecondi, tra un segnale e l\'altro.\nSe \"Tempo minimo\" e \"Tempo massimo\" risultano differenti, allora si calcolerà un tempo random differente tra un segnale e l\'altro.\nSe \"Tempo minimo\" e \"Tempo massimo\" risultano uguali, allora si calcolerà un tempo costante per tutta la durata della sessione.</string>
-    <string name="txtViewInfo_color_desc">È possibile attivare fino a 5 differenti colori.\nSelezionando \"0\" non si attiverà questo tipo di segnale.\nI seguenti colori si attiveranno selezionando:\n
-        \"1\": ROSSO.\n
-        \"2\": ROSSO, BLU.\n
-        \"3\": ROSSO, BLU, GIALLO.\n
-        \"4\": ROSSO, BLU, GIALLO, VERDE.\n
-        \"5\": ROSSO, BLU, GIALLO, VERDE, ROSA.</string>
-    <string name="dialog_message_number_min">The Maximum delay can\'t be less than the Minimum delay</string>
-    <string name="txtView_dev_info">App progettata e sviluppata da Andrea Rota\nPer qualsiasi problema o consiglio scrivete a andrea.rota.98@gmail.com</string>
+    <string name="txtViewInfo_color_desc">You can select up to 5 colors.</string>
+    <string name="txtView_dev_info">App designed and developed by Andrea Rota</string>
+    <string name="color_red">Red</string>
+    <string name="color_blue">Blue</string>
+    <string name="color_green">Green</string>
+    <string name="color_yellow">Yellow</string>
+    <string name="color_gray">Gray</string>
+    <string name="sound_0">Short Beep</string>
+    <string name="sound_1">Long Beep</string>
+    <string name="sound_2">Double Short Beep</string>
+    <string name="sound_4">Long Boop</string>
+    <string name="picture_4">Snowflake</string>
+    <string name="picture_3">Star</string>
+    <string name="picture_2">Triangle</string>
+    <string name="picture_1">Square</string>
+    <string name="pictures_0">Circle</string>
+    <string name="count_input">"Selected input(s): "</string>
+    <string name="error_lower">" must be less than or equal to "</string>
+    <string name="error_greater">" must be greater than or equal to "</string>
+    <string name="error_zero_showTime">" must be greater than zero"</string>
+    <string name="txtView_work_time">Work time</string>
+    <string name="txtView_rest_time">Rest time</string>
+    <string name="txtView_title_timer_settings">Timer settings</string>
+    <string name="txtView_title_signal_settings">Signal settings</string>
+    <string name="txtView_sets">Number of sets</string>
+    <string name="txtViewHint_seconds">seconds</string>
+    <string name="txtViewHint_cicles">0 = infinite</string>
+    <string name="error_empty">" can't be empty"</string>
+    <string name="spnr_title_profile">Profile</string>
+    <string name="btn_title_add_profile">Add</string>
+    <string name="btn_title_delete_profile">Delete</string>
 </resources>
