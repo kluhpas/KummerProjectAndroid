@@ -13,7 +13,7 @@
     <string name="title_activity_show_signal" translatable="false">ShowSignal</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="imgView_content_description">Pictures</string>
-    <string name="item_title" translatable="false">Info</string>
+    <string name="item_info_title" translatable="false">Info</string>
     <string name="txtViewInfo_sound_desc">È possibile attivare fino a 4 differenti suoni.</string>
     <string name="txtViewInfo_showTime_desc">Questo parametro stabilisce per quanti millisecondi il segnale rimarrà visibile sullo schermo.\nAd esempio, inserendo 1000 l\'immagine o il colore rimarranno visibili per un secondo, prima di essere cancellati.</string>
     <string name="txtViewInfo_picture_desc">È possibile attivare fino a 5 differenti immagini.</string>
@@ -53,8 +53,21 @@
     <string name="txtViewHint_cicles">0 = infinite</string>
     <string name="error_empty">can\'t be empty</string>
     <string name="txtView_timer" translatable="false">Timer</string>
-    <string name="spnr_title_profile">Profile</string>
     <string name="btn_title_add_profile">Add</string>
     <string name="btn_title_delete_profile">Delete</string>
     <string name="feedback" translatable="false">Feedback</string>
+    <string name="time_left_title">"time: "</string>
+    <string name="sets_left_title">"sets: "</string>
+    <string name="title_dialog_save_config">Save configuration</string>
+    <string name="message_dialog_save_config">Give it a name</string>
+    <string name="positiveButton_add_dialog">Save</string>
+    <string name="negativeButton_dialog">Cancel</string>
+    <string name="hint_dialog_input_config">Write</string>
+    <string name="title_default_config">Default Config</string>
+    <string name="positiveButton_del_dialog">Delete</string>
+    <string name="title_dialog_delete_config">Delete configuration</string>
+    <string name="message_dialog_delete_config">Select the configuration</string>
+    <string name="btn_title_update_profile">Update</string>
+    <string name="title_stats_item">Statistics</string>
+    <string name="error_multiple_name">This name is already used</string>
 </resources>

@@ -3,8 +3,8 @@
     <string name="txtView_color">Colors</string>
     <string name="txtView_sound">Sounds</string>
     <string name="txtView_picture">Pictures</string>
-    <string name="txtView_delay_min">Minimum time</string>
-    <string name="txtView_delay_max">Maximum time</string>
+    <string name="txtView_delay_min">Min time</string>
+    <string name="txtView_delay_max">Max time</string>
     <string name="txtView_time_show">Vision time</string>
     <string name="txtViewHint_delay_min">milliseconds</string>
     <string name="dummy_button">Exit</string>
@@ -42,7 +42,20 @@
     <string name="txtViewHint_seconds">seconds</string>
     <string name="txtViewHint_cicles">0 = infinite</string>
     <string name="error_empty">" can't be empty"</string>
-    <string name="spnr_title_profile">Profile</string>
     <string name="btn_title_add_profile">Add</string>
     <string name="btn_title_delete_profile">Delete</string>
+    <string name="time_left_title">"time: "</string>
+    <string name="sets_left_title">"sets: "</string>
+    <string name="title_dialog_save_config">Save configuration</string>
+    <string name="message_dialog_save_config">Give it a name</string>
+    <string name="positiveButton_add_dialog">Save</string>
+    <string name="negativeButton_dialog">Cancel</string>
+    <string name="hint_dialog_input_config">Write</string>
+    <string name="title_default_config">Default Config</string>
+    <string name="positiveButton_del_dialog">Delete</string>
+    <string name="title_dialog_delete_config">Delete configuration</string>
+    <string name="message_dialog_delete_config">Select the configuration</string>
+    <string name="btn_title_update_profile">Update</string>
+    <string name="title_stats_item">Statistics</string>
+    <string name="error_multiple_name">This name is already used</string>
 </resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/editText_input_name_config"
+        style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="?attr/dialogPreferredPadding"
+        android:layout_marginRight="?attr/dialogPreferredPadding"
+        android:layout_weight="1"
+        android:ems="10"
+        android:hint="@string/hint_dialog_input_config"
+        android:inputType="textPersonName"
+        android:maxLength="10"
+        android:singleLine="true" />
+</LinearLayout>

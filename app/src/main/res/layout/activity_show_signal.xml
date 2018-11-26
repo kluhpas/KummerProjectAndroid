@@ -10,45 +10,94 @@
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@android:color/white">
 
         <TextView
-            android:id="@+id/txtView_timer"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:id="@+id/fullscreen_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            android:contentDescription="@string/txtView_timer"
             android:gravity="center"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-            android:textColor="@android:color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:keepScreenOn="true"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1"
+            android:textColor="@color/colorPrimary" />
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
             android:contentDescription="@string/imgView_content_description"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtView_timer" />
+            app:layout_constraintTop_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/txtView_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/txtView_timer"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtView_timer_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/txtView_timer"
+            android:gravity="center"
+            android:text="@string/time_left_title"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            android:textColor="@android:color/black"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@+id/txtView_timer"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtView_sets_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/txtView_timer"
+            android:gravity="center"
+            android:text="@string/sets_left_title"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            android:textColor="@android:color/black"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtView_sets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/txtView_timer"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            android:textColor="@android:color/black"
+            app:layout_constraintStart_toEndOf="@+id/txtView_sets_title"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/fullscreen_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/background_light"
-        android:gravity="center"
-        android:keepScreenOn="true"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1"
-        android:textColor="@color/colorPrimary" />
+
 
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->

@@ -1,704 +1,733 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/txtView_title_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="@string/count_input"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-        app:layout_constraintEnd_toStartOf="@+id/txtView_input_count"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/count_input" />
-
-    <TextView
-        android:id="@+id/txtView_input_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="@string/count_inputs_number_default"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ScrollView
-        android:id="@+id/scrollView"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinator_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
+        android:focusable="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="90dp">
-
-            <Switch
-                android:id="@+id/switch_timer_settings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:checked="false"
-                android:gravity="center_vertical|end"
-                android:onClick="click_switch_timer_settings"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider_4" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtInputLayout_delayMin"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginRight="4dp"
-                android:hint="@string/txtView_delay_min"
-                app:counterEnabled="false"
-                app:errorEnabled="true"
-                app:helperText="@string/txtViewHint_delay_min"
-                app:hintAnimationEnabled="true"
-                app:hintEnabled="true"
-                app:layout_constraintEnd_toStartOf="@+id/guideline"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtView_title_signal_settings"
-                app:passwordToggleEnabled="false">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/nptNumberDelayMin"
-                    style="@style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:imeOptions="flagNoExtractUi"
-                    android:inputType="number"
-                    android:maxLength="8"
-                    android:singleLine="true"
-                    android:text="@string/default_value_delay_min" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtInputLayout_delayMax"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginRight="4dp"
-                android:hint="@string/txtView_delay_max"
-                app:counterEnabled="false"
-                app:errorEnabled="true"
-                app:helperText="@string/txtViewHint_delay_min"
-                app:hintAnimationEnabled="true"
-                app:hintEnabled="true"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@+id/txtView_title_signal_settings">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/nptNumberDelayMax"
-                    style="@style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:imeOptions="flagNoExtractUi"
-                    android:inputType="number"
-                    android:maxLength="8"
-                    android:singleLine="true"
-                    android:text="@string/default_value_delay_max" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:hint="@string/txtView_time_show"
-                app:counterEnabled="false"
-                app:errorEnabled="true"
-                app:helperText="@string/txtViewHint_delay_min"
-                app:hintAnimationEnabled="true"
-                app:hintEnabled="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/txtView_title_signal_settings">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/nptNumberShowTime"
-                    style="@style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:imeOptions="flagNoExtractUi"
-                    android:inputType="number"
-                    android:maxLength="8"
-                    android:singleLine="true"
-                    android:text="@string/default_value_time_show" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtInputLayout_workTime"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginRight="4dp"
-                android:hint="@string/txtView_work_time"
-                app:counterEnabled="false"
-                app:errorEnabled="true"
-                app:helperText="@string/txtViewHint_seconds"
-                app:hintAnimationEnabled="true"
-                app:hintEnabled="true"
-                app:layout_constraintEnd_toStartOf="@+id/guideline"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtView_title_timer_settings">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/nptNumberWorkTime"
-                    style="@style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:imeOptions="flagNoExtractUi"
-                    android:inputType="number"
-                    android:maxLength="8"
-                    android:singleLine="true"
-                    android:text="@string/default_value_work_time" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtInputLayout_restTime"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginRight="4dp"
-                android:hint="@string/txtView_rest_time"
-                app:counterEnabled="false"
-                app:errorEnabled="true"
-                app:helperText="@string/txtViewHint_seconds"
-                app:hintAnimationEnabled="true"
-                app:hintEnabled="true"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@+id/txtView_title_timer_settings">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/nptNumberRestTime"
-                    style="@style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:imeOptions="flagNoExtractUi"
-                    android:inputType="number"
-                    android:maxLength="8"
-                    android:singleLine="true"
-                    android:text="@string/default_value_rest_time" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtInputLayout_sets"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:hint="@string/txtView_sets"
-                app:counterEnabled="false"
-                app:errorEnabled="true"
-                app:helperText="@string/txtViewHint_cicles"
-                app:hintAnimationEnabled="true"
-                app:hintEnabled="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/txtView_title_timer_settings">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/nptNumberSets"
-                    style="@style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:imeOptions="flagNoExtractUi"
-                    android:inputType="number"
-                    android:maxLength="8"
-                    android:singleLine="true"
-                    android:text="@string/default_value_sets" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/txtView_title_color"
+                android:id="@+id/txtView_input_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
                 android:layout_marginTop="4dp"
-                android:gravity="start"
-                android:text="@string/txtView_color"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:text="@string/count_inputs_number_default"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                app:layout_anchorGravity="top"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/txtView_title_sound"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:gravity="start"
-                android:text="@string/txtView_sound"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider_1" />
-
-            <TextView
-                android:id="@+id/txtView_title_picture"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:gravity="start"
-                android:text="@string/txtView_picture"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider_2" />
-
-            <TextView
-                android:id="@+id/txtView_title_timer_settings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:gravity="start"
-                android:text="@string/txtView_title_timer_settings"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider_4" />
-
-            <TextView
-                android:id="@+id/txtView_title_signal_settings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:gravity="start"
-                android:text="@string/txtView_title_signal_settings"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider_3" />
-
-            <CheckBox
-                android:id="@+id/checkBox_color_0"
-                style="@style/Widget.AppCompat.CompoundButton.CheckBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:contentDescription="@string/color_red"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:onClick="updateCounter"
-                android:selectAllOnFocus="false"
-                android:text="@string/color_red"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toStartOf="@+id/checkBox_color_1"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtView_title_color"
-                tools:text="@string/color_red" />
-
-            <CheckBox
-                android:id="@+id/checkBox_color_1"
-                style="@style/Widget.AppCompat.CompoundButton.CheckBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginRight="24dp"
-                android:contentDescription="@string/color_blue"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:onClick="updateCounter"
-                android:selectAllOnFocus="false"
-                android:text="@string/color_blue"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/checkBox_color_0"
-                app:layout_constraintEnd_toStartOf="@+id/checkBox_color_2"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/checkBox_color_0"
-                app:layout_constraintTop_toTopOf="@+id/checkBox_color_0"
-                tools:text="@string/color_blue" />
-
-            <CheckBox
-                android:id="@+id/checkBox_color_2"
-                style="@style/Widget.AppCompat.CompoundButton.CheckBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/color_green"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:onClick="updateCounter"
-                android:selectAllOnFocus="false"
-                android:text="@string/color_green"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/checkBox_color_1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/checkBox_color_1"
-                app:layout_constraintTop_toTopOf="@+id/checkBox_color_1"
-                tools:text="@string/color_green" />
-
-            <CheckBox
-                android:id="@+id/checkBox_color_3"
-                style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+                android:id="@+id/txtView_title_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:contentDescription="@string/color_yellow"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:onClick="updateCounter"
-                android:selectAllOnFocus="false"
-                android:text="@string/color_yellow"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toStartOf="@+id/checkBox_color_4"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox_color_0"
-                tools:text="@string/color_yellow" />
-
-            <CheckBox
-                android:id="@+id/checkBox_color_4"
-                style="@style/Widget.AppCompat.CompoundButton.CheckBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
-                android:contentDescription="@string/color_gray"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:onClick="updateCounter"
-                android:selectAllOnFocus="false"
-                android:text="@string/color_gray"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/checkBox_color_3"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/checkBox_color_3"
-                app:layout_constraintTop_toTopOf="@+id/checkBox_color_3"
-                tools:text="@string/color_gray" />
-
-
-            <CheckBox
-                android:id="@+id/checkBox_sound_0"
-                style="@style/Widget.AppCompat.CompoundButton.CheckBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:contentDescription="@string/sound_0"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:onClick="updateCounter"
-                android:selectAllOnFocus="false"
-                android:singleLine="false"
-                android:text="@string/sound_0"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toStartOf="@+id/checkBox_sound_1"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtView_title_sound"
-                tools:text="@string/sound_0" />
-
-            <CheckBox
-                android:id="@+id/checkBox_sound_1"
-                style="@style/Widget.AppCompat.CompoundButton.CheckBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
-                android:contentDescription="@string/sound_1"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:onClick="updateCounter"
-                android:selectAllOnFocus="false"
-                android:text="@string/sound_1"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/checkBox_sound_0"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/checkBox_sound_0"
-                app:layout_constraintTop_toTopOf="@+id/checkBox_sound_0"
-                tools:text="@string/sound_1" />
-
-            <CheckBox
-                android:id="@+id/checkBox_sound_2"
-                style="@style/Widget.AppCompat.CompoundButton.CheckBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:contentDescription="@string/sound_2"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:onClick="updateCounter"
-                android:selectAllOnFocus="false"
-                android:text="@string/sound_2"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toStartOf="@+id/checkBox_sound_3"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox_sound_0"
-                tools:text="@string/sound_2" />
-
-            <CheckBox
-                android:id="@+id/checkBox_sound_3"
-                style="@style/Widget.AppCompat.CompoundButton.CheckBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
-                android:layout_marginLeft="28dp"
-                android:contentDescription="@string/sound_4"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:onClick="updateCounter"
-                android:selectAllOnFocus="false"
-                android:text="@string/sound_4"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/checkBox_sound_2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/checkBox_sound_2"
-                app:layout_constraintTop_toTopOf="@+id/checkBox_sound_2"
-                tools:text="@string/sound_4" />
-
-            <CheckBox
-                android:id="@+id/checkBox_picture_0"
-                style="@style/Widget.AppCompat.CompoundButton.CheckBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:contentDescription="@string/pictures_0"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:onClick="updateCounter"
-                android:selectAllOnFocus="false"
-                android:text="@string/pictures_0"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toStartOf="@+id/checkBox_picture_1"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtView_title_picture"
-                tools:text="@string/pictures_0" />
-
-            <CheckBox
-                android:id="@+id/checkBox_picture_1"
-                style="@style/Widget.AppCompat.CompoundButton.CheckBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
-                android:contentDescription="@string/picture_1"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:onClick="updateCounter"
-                android:selectAllOnFocus="false"
-                android:text="@string/picture_1"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/checkBox_picture_0"
-                app:layout_constraintEnd_toStartOf="@+id/checkBox_picture_2"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/checkBox_picture_0"
-                app:layout_constraintTop_toTopOf="@+id/checkBox_picture_0"
-                tools:text="@string/picture_1" />
-
-            <CheckBox
-                android:id="@+id/checkBox_picture_2"
-                style="@style/Widget.AppCompat.CompoundButton.CheckBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
-                android:contentDescription="@string/picture_2"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:onClick="updateCounter"
-                android:selectAllOnFocus="false"
-                android:text="@string/picture_2"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/checkBox_picture_1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/checkBox_picture_1"
-                app:layout_constraintTop_toTopOf="@+id/checkBox_picture_1"
-                tools:text="@string/picture_2" />
-
-            <CheckBox
-                android:id="@+id/checkBox_picture_3"
-                style="@style/Widget.AppCompat.CompoundButton.CheckBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/picture_3"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:onClick="updateCounter"
-                android:selectAllOnFocus="false"
-                android:text="@string/picture_3"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/checkBox_picture_4"
-                app:layout_constraintEnd_toStartOf="@+id/checkBox_picture_4"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/checkBox_picture_4"
-                tools:text="@string/picture_3" />
-
-            <CheckBox
-                android:id="@+id/checkBox_picture_4"
-                style="@style/Widget.AppCompat.CompoundButton.CheckBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="4dp"
-                android:contentDescription="@string/picture_4"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:onClick="updateCounter"
-                android:selectAllOnFocus="false"
-                android:text="@string/picture_4"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/checkBox_picture_3"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox_picture_2"
-                tools:text="@string/picture_4" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.33" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.66" />
-
-            <View
-                android:id="@+id/divider_1"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginRight="24dp"
-                android:background="?android:attr/listDivider"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox_color_3" />
-
-            <View
-                android:id="@+id/divider_2"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginRight="24dp"
-                android:background="?android:attr/listDivider"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox_sound_2" />
-
-            <View
-                android:id="@+id/divider_3"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginRight="24dp"
-                android:background="?android:attr/listDivider"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox_picture_3" />
-
-            <View
-                android:id="@+id/divider_4"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginRight="24dp"
-                android:background="?android:attr/listDivider"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtInputLayout_delayMax" />
+                android:text="@string/count_input"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                app:layout_constraintEnd_toStartOf="@+id/txtView_input_count"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/count_input" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="auto"
+                android:paddingBottom="90dp"
+                android:descendantFocusability="beforeDescendants"
+                android:focusableInTouchMode="true">
+
+                <Switch
+                    android:id="@+id/switch_timer_settings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:checked="false"
+                    android:gravity="center_vertical|end"
+                    android:onClick="click_switch_timer_settings"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider_4" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInputLayout_delayMin"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
+                    android:hint="@string/txtView_delay_min"
+                    app:counterEnabled="false"
+                    app:errorEnabled="true"
+                    app:helperText="@string/txtViewHint_delay_min"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtView_title_signal_settings"
+                    app:passwordToggleEnabled="false">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/nptNumberDelayMin"
+                        style="@style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:imeOptions="flagNoExtractUi"
+                        android:inputType="number"
+                        android:maxLength="8"
+                        android:singleLine="true"
+                        android:text="@string/default_value_delay_min" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInputLayout_delayMax"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
+                    android:hint="@string/txtView_delay_max"
+                    app:counterEnabled="false"
+                    app:errorEnabled="true"
+                    app:helperText="@string/txtViewHint_delay_min"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/txtView_title_signal_settings">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/nptNumberDelayMax"
+                        style="@style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:imeOptions="flagNoExtractUi"
+                        android:inputType="number"
+                        android:maxLength="8"
+                        android:singleLine="true"
+                        android:text="@string/default_value_delay_max" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:hint="@string/txtView_time_show"
+                    app:counterEnabled="false"
+                    app:errorEnabled="true"
+                    app:helperText="@string/txtViewHint_delay_min"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintTop_toBottomOf="@+id/txtView_title_signal_settings">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/nptNumberShowTime"
+                        style="@style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:imeOptions="flagNoExtractUi"
+                        android:inputType="number"
+                        android:maxLength="8"
+                        android:singleLine="true"
+                        android:text="@string/default_value_time_show" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInputLayout_workTime"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
+                    android:hint="@string/txtView_work_time"
+                    app:counterEnabled="false"
+                    app:errorEnabled="true"
+                    app:helperText="@string/txtViewHint_seconds"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtView_title_timer_settings">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/nptNumberWorkTime"
+                        style="@style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:imeOptions="flagNoExtractUi"
+                        android:inputType="number"
+                        android:maxLength="8"
+                        android:singleLine="true"
+                        android:text="@string/default_value_work_time" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInputLayout_restTime"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
+                    android:hint="@string/txtView_rest_time"
+                    app:counterEnabled="false"
+                    app:errorEnabled="true"
+                    app:helperText="@string/txtViewHint_seconds"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/txtView_title_timer_settings">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/nptNumberRestTime"
+                        style="@style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:imeOptions="flagNoExtractUi"
+                        android:inputType="number"
+                        android:maxLength="8"
+                        android:singleLine="true"
+                        android:text="@string/default_value_rest_time" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInputLayout_sets"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:hint="@string/txtView_sets"
+                    app:counterEnabled="false"
+                    app:errorEnabled="true"
+                    app:helperText="@string/txtViewHint_cicles"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintTop_toBottomOf="@+id/txtView_title_timer_settings">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/nptNumberSets"
+                        style="@style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:imeOptions="flagNoExtractUi"
+                        android:inputType="number"
+                        android:maxLength="8"
+                        android:singleLine="true"
+                        android:text="@string/default_value_sets" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/txtView_title_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="4dp"
+                    android:gravity="start"
+                    android:text="@string/txtView_color"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtView_title_sound"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="start"
+                    android:text="@string/txtView_sound"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider_1" />
+
+                <TextView
+                    android:id="@+id/txtView_title_picture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="start"
+                    android:text="@string/txtView_picture"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider_2" />
+
+                <TextView
+                    android:id="@+id/txtView_title_timer_settings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="start"
+                    android:text="@string/txtView_title_timer_settings"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider_4" />
+
+                <TextView
+                    android:id="@+id/txtView_title_signal_settings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="start"
+                    android:text="@string/txtView_title_signal_settings"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider_3" />
+
+                <CheckBox
+                    android:id="@+id/checkBox_color_0"
+                    style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:contentDescription="@string/color_red"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:onClick="updateCounter"
+                    android:selectAllOnFocus="false"
+                    android:text="@string/color_red"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toStartOf="@+id/checkBox_color_1"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtView_title_color"
+                    tools:text="@string/color_red" />
+
+                <CheckBox
+                    android:id="@+id/checkBox_color_1"
+                    style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
+                    android:contentDescription="@string/color_blue"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:onClick="updateCounter"
+                    android:selectAllOnFocus="false"
+                    android:text="@string/color_blue"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/checkBox_color_0"
+                    app:layout_constraintEnd_toStartOf="@+id/checkBox_color_2"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/checkBox_color_0"
+                    app:layout_constraintTop_toTopOf="@+id/checkBox_color_0"
+                    tools:text="@string/color_blue" />
+
+                <CheckBox
+                    android:id="@+id/checkBox_color_2"
+                    style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/color_green"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:onClick="updateCounter"
+                    android:selectAllOnFocus="false"
+                    android:text="@string/color_green"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/checkBox_color_1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/checkBox_color_1"
+                    app:layout_constraintTop_toTopOf="@+id/checkBox_color_1"
+                    tools:text="@string/color_green" />
+
+                <CheckBox
+                    android:id="@+id/checkBox_color_3"
+                    style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:contentDescription="@string/color_yellow"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:onClick="updateCounter"
+                    android:selectAllOnFocus="false"
+                    android:text="@string/color_yellow"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toStartOf="@+id/checkBox_color_4"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkBox_color_0"
+                    tools:text="@string/color_yellow" />
+
+                <CheckBox
+                    android:id="@+id/checkBox_color_4"
+                    style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:contentDescription="@string/color_gray"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:onClick="updateCounter"
+                    android:selectAllOnFocus="false"
+                    android:text="@string/color_gray"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/checkBox_color_3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/checkBox_color_3"
+                    app:layout_constraintTop_toTopOf="@+id/checkBox_color_3"
+                    tools:text="@string/color_gray" />
+
+
+                <CheckBox
+                    android:id="@+id/checkBox_sound_0"
+                    style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:contentDescription="@string/sound_0"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:onClick="updateCounter"
+                    android:selectAllOnFocus="false"
+                    android:singleLine="false"
+                    android:text="@string/sound_0"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toStartOf="@+id/checkBox_sound_1"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtView_title_sound"
+                    tools:text="@string/sound_0" />
+
+                <CheckBox
+                    android:id="@+id/checkBox_sound_1"
+                    style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:contentDescription="@string/sound_1"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:onClick="updateCounter"
+                    android:selectAllOnFocus="false"
+                    android:text="@string/sound_1"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/checkBox_sound_0"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/checkBox_sound_0"
+                    app:layout_constraintTop_toTopOf="@+id/checkBox_sound_0"
+                    tools:text="@string/sound_1" />
+
+                <CheckBox
+                    android:id="@+id/checkBox_sound_2"
+                    style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:contentDescription="@string/sound_2"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:onClick="updateCounter"
+                    android:selectAllOnFocus="false"
+                    android:text="@string/sound_2"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toStartOf="@+id/checkBox_sound_3"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkBox_sound_0"
+                    tools:text="@string/sound_2" />
+
+                <CheckBox
+                    android:id="@+id/checkBox_sound_3"
+                    style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginLeft="28dp"
+                    android:contentDescription="@string/sound_4"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:onClick="updateCounter"
+                    android:selectAllOnFocus="false"
+                    android:text="@string/sound_4"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/checkBox_sound_2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/checkBox_sound_2"
+                    app:layout_constraintTop_toTopOf="@+id/checkBox_sound_2"
+                    tools:text="@string/sound_4" />
+
+                <CheckBox
+                    android:id="@+id/checkBox_picture_0"
+                    style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:contentDescription="@string/pictures_0"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:onClick="updateCounter"
+                    android:selectAllOnFocus="false"
+                    android:text="@string/pictures_0"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toStartOf="@+id/checkBox_picture_1"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtView_title_picture"
+                    tools:text="@string/pictures_0" />
+
+                <CheckBox
+                    android:id="@+id/checkBox_picture_1"
+                    style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:contentDescription="@string/picture_1"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:onClick="updateCounter"
+                    android:selectAllOnFocus="false"
+                    android:text="@string/picture_1"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/checkBox_picture_0"
+                    app:layout_constraintEnd_toStartOf="@+id/checkBox_picture_2"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/checkBox_picture_0"
+                    app:layout_constraintTop_toTopOf="@+id/checkBox_picture_0"
+                    tools:text="@string/picture_1" />
+
+                <CheckBox
+                    android:id="@+id/checkBox_picture_2"
+                    style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:contentDescription="@string/picture_2"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:onClick="updateCounter"
+                    android:selectAllOnFocus="false"
+                    android:text="@string/picture_2"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/checkBox_picture_1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/checkBox_picture_1"
+                    app:layout_constraintTop_toTopOf="@+id/checkBox_picture_1"
+                    tools:text="@string/picture_2" />
+
+                <CheckBox
+                    android:id="@+id/checkBox_picture_3"
+                    style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/picture_3"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:onClick="updateCounter"
+                    android:selectAllOnFocus="false"
+                    android:text="@string/picture_3"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/checkBox_picture_4"
+                    app:layout_constraintEnd_toStartOf="@+id/checkBox_picture_4"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/checkBox_picture_4"
+                    tools:text="@string/picture_3" />
+
+                <CheckBox
+                    android:id="@+id/checkBox_picture_4"
+                    style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="4dp"
+                    android:contentDescription="@string/picture_4"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:onClick="updateCounter"
+                    android:selectAllOnFocus="false"
+                    android:text="@string/picture_4"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/checkBox_picture_3"
+                    app:layout_constraintTop_toBottomOf="@+id/checkBox_picture_2"
+                    tools:text="@string/picture_4" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.33" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.66" />
+
+                <View
+                    android:id="@+id/divider_1"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
+                    android:background="?android:attr/listDivider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkBox_color_3" />
+
+                <View
+                    android:id="@+id/divider_2"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
+                    android:background="?android:attr/listDivider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkBox_sound_2" />
+
+                <View
+                    android:id="@+id/divider_3"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
+                    android:background="?android:attr/listDivider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkBox_picture_3" />
+
+                <View
+                    android:id="@+id/divider_4"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
+                    android:background="?android:attr/listDivider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtInputLayout_delayMax" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="12dp"
+            android:onClick="start"
+            app:backgroundTint="@color/ic_launcher_background"
+            app:layout_anchor="@+id/bottomAppBar"
+            app:layout_anchorGravity="top|center_horizontal"
+            app:srcCompat="@drawable/ic_directions_run_white_24dp" />
 
         <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/bottomAppBar"
@@ -710,17 +739,15 @@
             app:backgroundTint="@color/colorPrimary"
             app:fabAlignmentMode="center" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="12dp"
-            android:onClick="start"
-            app:backgroundTint="@color/colorAccent"
-            app:backgroundTintMode="screen"
-            app:layout_anchor="@+id/bottomAppBar"
-            app:layout_anchorGravity="top|center_horizontal"
-            app:srcCompat="@drawable/ic_directions_run_black_24dp" />
-
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/drawer_menu" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

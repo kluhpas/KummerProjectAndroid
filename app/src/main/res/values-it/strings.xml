@@ -3,8 +3,8 @@
     <string name="txtView_color">Colori</string>
     <string name="txtView_sound">Suoni</string>
     <string name="txtView_picture">Immagini</string>
-    <string name="txtView_delay_min">Tempo minimo</string>
-    <string name="txtView_delay_max">Tempo massimo</string>
+    <string name="txtView_delay_min">Tempo Min</string>
+    <string name="txtView_delay_max">Tempo Max</string>
     <string name="txtView_time_show">Tempo di visione</string>
     <string name="txtViewHint_delay_min">millisecondi</string>
     <string name="dummy_button">Esci</string>
@@ -42,7 +42,20 @@
     <string name="txtViewHint_seconds">secondi</string>
     <string name="txtViewHint_cicles">0 = infinito</string>
     <string name="error_empty">" non può essere vuota"</string>
-    <string name="spnr_title_profile">Profilo</string>
     <string name="btn_title_add_profile">Aggiungi</string>
     <string name="btn_title_delete_profile">Rimuovi</string>
+    <string name="time_left_title">"tempo: "</string>
+    <string name="sets_left_title">"rip: "</string>
+    <string name="title_dialog_save_config">Salva configurazione</string>
+    <string name="message_dialog_save_config">Dai un nome</string>
+    <string name="positiveButton_add_dialog">Salva</string>
+    <string name="negativeButton_dialog">Annulla</string>
+    <string name="hint_dialog_input_config">Scrivi</string>
+    <string name="title_default_config">Default Config</string>
+    <string name="positiveButton_del_dialog">Elimina</string>
+    <string name="title_dialog_delete_config">Elimina configurazione</string>
+    <string name="message_dialog_delete_config">Seleziona la configurazione</string>
+    <string name="btn_title_update_profile">Aggiorna</string>
+    <string name="title_stats_item">Statistiche</string>
+    <string name="error_multiple_name">Questo nome è gia utilizzato</string>
 </resources>

@@ -23,4 +23,13 @@ public class Info extends AppCompatActivity {
         Email.putExtra(Intent.EXTRA_TEXT, "Dear ...," + "");
         startActivity(Intent.createChooser(Email, "Send Feedback:"));
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Info.this, MainActivity.class);
+        intent.putExtra("firstAccess", false);
+        finish();
+        startActivity(intent);
+        super.onBackPressed();
+    }
 }

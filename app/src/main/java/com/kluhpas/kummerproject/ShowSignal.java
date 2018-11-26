@@ -65,9 +65,9 @@ public class ShowSignal extends AppCompatActivity {
         public void run() {
             // Delayed display of UI elements
             ActionBar actionBar = getSupportActionBar();
-            if (actionBar != null) {
+            /*if (actionBar != null) {
                 actionBar.show();
-            }
+            }*/
             mControlsView.setVisibility(View.VISIBLE);
         }
     };
@@ -100,12 +100,14 @@ public class ShowSignal extends AppCompatActivity {
     boolean[] signalActive = {false, false, false, false, false, false, false, false, false, false, false, false, false, false};
     boolean flag_btn_enable_switch_timer_settings = false, flag = false, flag_isDestroy = false;
 
+    int sets_left = 1, sets_total = 0;
+
     MediaPlayer sound_0;
     MediaPlayer sound_1;
     MediaPlayer sound_2;
     MediaPlayer sound_3;
 
-    TextView txtView_timer;
+    TextView txtView_timer, txtView_sets;
 
     ImageView imageview;
 
@@ -152,6 +154,7 @@ public class ShowSignal extends AppCompatActivity {
 
         imageview = findViewById(R.id.imageView);
         txtView_timer = findViewById(R.id.txtView_timer);
+        txtView_sets = findViewById(R.id.txtView_sets);
 
         for (int i = 0; i < colorVal.length; i++) {
             if (colorVal[i])
@@ -173,6 +176,46 @@ public class ShowSignal extends AppCompatActivity {
             else
                 signalActive[i+9] = false;
         }
+
+        new CountDownTimer(6000, 500) {
+            TextView txtView = findViewById(R.id.fullscreen_content);
+
+            public void onTick(long millisUntilFinished) {
+                if ((millisUntilFinished / 1000) >= 1)
+                    txtView.setText(String.valueOf(millisUntilFinished / 1000));
+                else
+                    txtView.setText("START");
+            }
+
+            public void onFinish() {
+                txtView.setText("");
+                txtView.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                if (!flag_btn_enable_switch_timer_settings) {
+                    signalRandom();
+                }
+                else if (timerVal[2] == 0) {
+                    findViewById(R.id.txtView_sets_title).setVisibility(View.VISIBLE);
+                    findViewById(R.id.txtView_timer_title).setVisibility(View.VISIBLE);
+                    timerVal[0] *= 1000;
+                    timerVal[1] *= 1000;
+                    timerVal[2] = -1;
+                    txtView_sets.setText(String.valueOf(sets_left));
+                    timerWork();
+                    signalRandom();
+                }
+                else {
+                    findViewById(R.id.txtView_sets_title).setVisibility(View.VISIBLE);
+                    findViewById(R.id.txtView_timer_title).setVisibility(View.VISIBLE);
+                    timerVal[0] *= 1000;
+                    timerVal[1] *= 1000;
+                    sets_total = timerVal[2];
+                    String tmp = sets_left + "/" + sets_total;
+                    txtView_sets.setText(tmp);
+                    timerWork();
+                    signalRandom();
+                }
+            }
+        }.start();
     }
 
     public void signalRandom() {
@@ -237,8 +280,8 @@ public class ShowSignal extends AppCompatActivity {
                     @Override
                     public void run() {
                         imageview.setImageResource(android.R.color.transparent);
-                        imageview.setBackgroundColor(Color.WHITE);
-                        txtView_timer.setBackgroundColor(Color.WHITE);
+                        imageview.setBackgroundColor(Color.TRANSPARENT);
+                        imageview.setVisibility(View.INVISIBLE);
                     }
                 }, signalVal[2]);
 
@@ -254,32 +297,33 @@ public class ShowSignal extends AppCompatActivity {
     }
 
     public void drawColor(int tmp) {
+
+        imageview.setVisibility(View.VISIBLE);
+
         switch (tmp) {
             case 0:
                 imageview.setBackgroundColor(Color.RED);
-                txtView_timer.setBackgroundColor(Color.RED);
                 break;
             case 1:
                 imageview.setBackgroundColor(Color.BLUE);
-                txtView_timer.setBackgroundColor(Color.BLUE);
                 break;
             case 2:
                 imageview.setBackgroundColor(Color.GREEN);
-                txtView_timer.setBackgroundColor(Color.GREEN);
                 break;
             case 3:
                 imageview.setBackgroundColor(Color.YELLOW);
-                txtView_timer.setBackgroundColor(Color.YELLOW);
                 break;
             case 4:
                 imageview.setBackgroundColor(Color.GRAY);
-                txtView_timer.setBackgroundColor(Color.GRAY);
                 break;
             default: break;
         }
     }
 
     public void drawPicture(int tmp) {
+
+        imageview.setVisibility(View.VISIBLE);
+
         switch (tmp-9) {
             case 0:
                 imageview.setImageResource(R.drawable.circle);
@@ -328,6 +372,14 @@ public class ShowSignal extends AppCompatActivity {
 
             public void onFinish() {
                 timerVal[2]--;
+                sets_left++;
+                txtView_timer.setText("");
+                txtView_sets.setText("");
+                findViewById(R.id.txtView_sets_title).setVisibility(View.INVISIBLE);
+                findViewById(R.id.txtView_timer_title).setVisibility(View.INVISIBLE);
+
+                imageview.setVisibility(View.INVISIBLE);
+
                 if (timerVal[2] == 0)
                     exit(mControlsView);
                 else if (timerVal[1] == 0) {
@@ -345,24 +397,38 @@ public class ShowSignal extends AppCompatActivity {
 
     public void timerRest() {
 
-        mContentView.setBackgroundColor(getResources().getColor(android.R.color.white));
+        mContentView.setBackgroundColor(Color.TRANSPARENT);
 
-        new CountDownTimer(timerVal[1], 500) {
+        CountDownTimer timerRest =  new CountDownTimer(timerVal[1], 500) {
             TextView txtView = findViewById(R.id.fullscreen_content);
             public void onTick(long millisUntilFinished) {
-                txtView_timer.setText(String.valueOf(millisUntilFinished / 1000));
+                if ((millisUntilFinished / 1000) >= 1)
+                    txtView.setText(String.valueOf(millisUntilFinished / 1000));
+                else
+                    txtView.setText("START");
             }
 
             public void onFinish() {
                 if (!flag_isDestroy) {
                     imageview.setImageResource(android.R.color.transparent);
-                    imageview.setBackgroundColor(Color.WHITE);
-                    txtView_timer.setBackgroundColor(Color.WHITE);
+                    imageview.setBackgroundColor(Color.TRANSPARENT);
                     flag = true;
-                    signalRandom();
-                    timerWork();
                     txtView.setText("");
-                    txtView.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                    txtView.setBackgroundColor(Color.TRANSPARENT);
+
+                    imageview.setVisibility(View.VISIBLE)
+                    ;
+                    if (sets_total == 0){
+                        txtView_sets.setText(String.valueOf(sets_left));
+                    }
+                    else {
+                        String tmp = sets_left + "/" + sets_total;
+                        txtView_sets.setText(tmp);
+                    }
+                    findViewById(R.id.txtView_sets_title).setVisibility(View.VISIBLE);
+                    findViewById(R.id.txtView_timer_title).setVisibility(View.VISIBLE);
+                    timerWork();
+                    signalRandom();
                 }
             }
         }.start();
@@ -406,6 +472,8 @@ public class ShowSignal extends AppCompatActivity {
 
         flag = false;
 
+
+
         super.onDestroy();
     }
 
@@ -420,37 +488,6 @@ public class ShowSignal extends AppCompatActivity {
         super.onResume();
         flag = true;
         flag_isDestroy = false;
-
-       new CountDownTimer(6000, 500) {
-            TextView txtView = findViewById(R.id.fullscreen_content);
-
-            public void onTick(long millisUntilFinished) {
-                if ((millisUntilFinished / 1000) >= 1)
-                    txtView.setText(String.valueOf(millisUntilFinished / 1000));
-                else
-                    txtView.setText("START");
-            }
-
-            public void onFinish() {
-                txtView.setText("");
-                txtView.setBackgroundColor(getResources().getColor(android.R.color.transparent));
-                if (!flag_btn_enable_switch_timer_settings)
-                    signalRandom();
-                else if (timerVal[2] == 0) {
-                    timerVal[0] *= 1000;
-                    timerVal[1] *= 1000;
-                    timerVal[2] = -1;
-                    timerWork();
-                    signalRandom();
-                }
-                else {
-                    timerVal[0] *= 1000;
-                    timerVal[1] *= 1000;
-                    timerWork();
-                    signalRandom();
-                }
-            }
-        }.start();
     }
 
     @Override
