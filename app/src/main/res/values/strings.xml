@@ -66,8 +66,11 @@
     <string name="title_default_config">Default Config</string>
     <string name="positiveButton_del_dialog">Delete</string>
     <string name="title_dialog_delete_config">Delete configuration</string>
-    <string name="message_dialog_delete_config">Select the configuration</string>
+    <string name="message_dialog_delete_update_config">Select the configuration</string>
     <string name="btn_title_update_profile">Update</string>
     <string name="title_stats_item">Statistics</string>
     <string name="error_multiple_name">This name is already used</string>
+    <string name="error_string_empty">It can\'t be empty</string>
+    <string name="start">START</string>
+    <string name="title_dialog_update_config">Update configuration</string>
 </resources>

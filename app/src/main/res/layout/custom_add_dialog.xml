@@ -11,6 +11,7 @@
         android:layout_marginLeft="?attr/dialogPreferredPadding"
         android:layout_marginRight="?attr/dialogPreferredPadding"
         android:layout_weight="1"
+        android:contentDescription="@string/message_dialog_save_config"
         android:ems="10"
         android:hint="@string/hint_dialog_input_config"
         android:inputType="textPersonName"

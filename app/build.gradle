@@ -6,8 +6,8 @@ android {
         applicationId "com.kluhpas.kummerproject"
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 5
-        versionName "2.0"
+        versionCode 7
+        versionName "2.1.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
@@ -36,4 +36,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
     implementation 'androidx.legacy:legacy-support-core-utils:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
-    }
+    implementation 'androidx.gridlayout:gridlayout:1.0.0'
+}

@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <Spinner
         android:id="@+id/spnr_del"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
         android:layout_marginLeft="?attr/dialogPreferredPadding"
         android:layout_marginRight="?attr/dialogPreferredPadding"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:contentDescription="@string/message_dialog_delete_update_config"
+        android:minHeight="48dp" />
 </LinearLayout>

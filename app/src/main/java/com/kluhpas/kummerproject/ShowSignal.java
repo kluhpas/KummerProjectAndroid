@@ -64,13 +64,14 @@ public class ShowSignal extends AppCompatActivity {
         @Override
         public void run() {
             // Delayed display of UI elements
-            ActionBar actionBar = getSupportActionBar();
-            /*if (actionBar != null) {
+            /*ActionBar actionBar = getSupportActionBar();
+            if (actionBar != null) {
                 actionBar.show();
             }*/
             mControlsView.setVisibility(View.VISIBLE);
         }
     };
+
     private boolean mVisible;
     private final Runnable mHideRunnable = new Runnable() {
         @Override
@@ -98,7 +99,7 @@ public class ShowSignal extends AppCompatActivity {
     boolean[] soundVal = {false, false, false, false};
     boolean[] pictureVal = {false, false, false, false, false};
     boolean[] signalActive = {false, false, false, false, false, false, false, false, false, false, false, false, false, false};
-    boolean flag_btn_enable_switch_timer_settings = false, flag = false, flag_isDestroy = false;
+    boolean flag_btn_enable_switch_timer_settings = false, flag = true;
 
     int sets_left = 1, sets_total = 0;
 
@@ -120,7 +121,7 @@ public class ShowSignal extends AppCompatActivity {
 
         setContentView(R.layout.activity_show_signal);
 
-        setTitle("Start");
+        setTitle(R.string.start);
 
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
@@ -156,26 +157,9 @@ public class ShowSignal extends AppCompatActivity {
         txtView_timer = findViewById(R.id.txtView_timer);
         txtView_sets = findViewById(R.id.txtView_sets);
 
-        for (int i = 0; i < colorVal.length; i++) {
-            if (colorVal[i])
-                signalActive[i] = true;
-            else
-                signalActive[i] = false;
-        }
-
-        for (int i = 0; i < soundVal.length; i++) {
-            if (soundVal[i])
-                signalActive[i+5] = true;
-            else
-                signalActive[i+5] = false;
-        }
-
-        for (int i = 0; i < pictureVal.length; i++) {
-            if (pictureVal[i])
-                signalActive[i+9] = true;
-            else
-                signalActive[i+9] = false;
-        }
+        System.arraycopy(colorVal, 0, signalActive, 0, colorVal.length);
+        System.arraycopy(soundVal, 0, signalActive, 5, soundVal.length);
+        System.arraycopy(pictureVal, 0, signalActive, 9, pictureVal.length);
 
         new CountDownTimer(6000, 500) {
             TextView txtView = findViewById(R.id.fullscreen_content);
@@ -184,7 +168,7 @@ public class ShowSignal extends AppCompatActivity {
                 if ((millisUntilFinished / 1000) >= 1)
                     txtView.setText(String.valueOf(millisUntilFinished / 1000));
                 else
-                    txtView.setText("START");
+                    txtView.setText(R.string.start);
             }
 
             public void onFinish() {
@@ -219,8 +203,10 @@ public class ShowSignal extends AppCompatActivity {
     }
 
     public void signalRandom() {
-        if (!flag_isDestroy) {
             if (flag) {
+                imageview.setImageResource(android.R.color.transparent);
+                imageview.setBackgroundColor(Color.TRANSPARENT);
+                imageview.setVisibility(View.INVISIBLE);
                 int tmp;
                 Random rnd = new Random();
                 do {
@@ -274,9 +260,9 @@ public class ShowSignal extends AppCompatActivity {
                         break;
                 }
 
-                Handler handler = new Handler();
+                Handler handlerClean = new Handler();
 
-                handler.postDelayed(new Runnable() {
+                handlerClean.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         imageview.setImageResource(android.R.color.transparent);
@@ -284,6 +270,8 @@ public class ShowSignal extends AppCompatActivity {
                         imageview.setVisibility(View.INVISIBLE);
                     }
                 }, signalVal[2]);
+
+                Handler handler = new Handler();
 
                 tmp = rnd.nextInt((signalVal[1] - signalVal[0] + 1)) + signalVal[0];
                 handler.postDelayed(new Runnable() {
@@ -294,7 +282,6 @@ public class ShowSignal extends AppCompatActivity {
                 }, tmp);
             }
         }
-    }
 
     public void drawColor(int tmp) {
 
@@ -347,16 +334,20 @@ public class ShowSignal extends AppCompatActivity {
     public void playSound(int tmp) {
         switch (tmp-5) {
             case 0:
-                sound_0.start();
+                if (sound_0 != null)
+                    sound_0.start();
                 break;
             case 1:
-                sound_1.start();
+                if (sound_1 != null)
+                    sound_1.start();
                 break;
             case 2:
-                sound_2.start();
+                if (sound_2 != null)
+                    sound_2.start();
                 break;
             case 3:
-                sound_3.start();
+                if (sound_3 != null)
+                    sound_3.start();
                 break;
             default: break;
         }
@@ -386,10 +377,8 @@ public class ShowSignal extends AppCompatActivity {
                     timerWork();
                 }
                 else {
-                    if (!flag_isDestroy) {
                         flag = false;
                         timerRest();
-                    }
                 }
             }
         }.start();
@@ -399,17 +388,16 @@ public class ShowSignal extends AppCompatActivity {
 
         mContentView.setBackgroundColor(Color.TRANSPARENT);
 
-        CountDownTimer timerRest =  new CountDownTimer(timerVal[1], 500) {
+        new CountDownTimer(timerVal[1], 500) {
             TextView txtView = findViewById(R.id.fullscreen_content);
             public void onTick(long millisUntilFinished) {
                 if ((millisUntilFinished / 1000) >= 1)
                     txtView.setText(String.valueOf(millisUntilFinished / 1000));
                 else
-                    txtView.setText("START");
+                    txtView.setText(R.string.start);
             }
 
             public void onFinish() {
-                if (!flag_isDestroy) {
                     imageview.setImageResource(android.R.color.transparent);
                     imageview.setBackgroundColor(Color.TRANSPARENT);
                     flag = true;
@@ -430,14 +418,12 @@ public class ShowSignal extends AppCompatActivity {
                     timerWork();
                     signalRandom();
                 }
-            }
         }.start();
     }
 
     /** Called when the user taps the btnStart */
     public void exit(View view) {
         flag = false;
-        flag_isDestroy = true;
 
         Intent intent = new Intent(ShowSignal.this, MainActivity.class);
         intent.putExtra("firstAccess", false);
@@ -452,8 +438,6 @@ public class ShowSignal extends AppCompatActivity {
         sound_1.stop();
         sound_2.stop();
         sound_3.stop();
-
-        flag = false;
 
         super.onPause();
     }
@@ -472,8 +456,6 @@ public class ShowSignal extends AppCompatActivity {
 
         flag = false;
 
-
-
         super.onDestroy();
     }
 
@@ -481,13 +463,6 @@ public class ShowSignal extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         exit(mControlsView);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        flag = true;
-        flag_isDestroy = false;
     }
 
     @Override

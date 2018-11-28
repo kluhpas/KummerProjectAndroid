@@ -66,13 +66,14 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusable="auto"
-                android:paddingBottom="90dp"
                 android:descendantFocusability="beforeDescendants"
-                android:focusableInTouchMode="true">
+                android:focusable="auto"
+                android:focusableInTouchMode="true"
+                android:paddingBottom="90dp">
 
                 <Switch
                     android:id="@+id/switch_timer_settings"
+                    style="@android:style/Widget.Material.Light.CompoundButton.Switch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -81,6 +82,7 @@
                     android:checked="false"
                     android:gravity="center_vertical|end"
                     android:onClick="click_switch_timer_settings"
+                    android:switchMinWidth="48dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/divider_4" />
 
@@ -95,6 +97,7 @@
                     android:layout_marginEnd="4dp"
                     android:layout_marginRight="4dp"
                     android:hint="@string/txtView_delay_min"
+                    android:minHeight="48dp"
                     app:counterEnabled="false"
                     app:errorEnabled="true"
                     app:helperText="@string/txtViewHint_delay_min"
@@ -129,6 +132,7 @@
                     android:layout_marginEnd="4dp"
                     android:layout_marginRight="4dp"
                     android:hint="@string/txtView_delay_max"
+                    android:minHeight="48dp"
                     app:counterEnabled="false"
                     app:errorEnabled="true"
                     app:helperText="@string/txtViewHint_delay_min"
@@ -161,6 +165,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
                     android:hint="@string/txtView_time_show"
+                    android:minHeight="48dp"
                     app:counterEnabled="false"
                     app:errorEnabled="true"
                     app:helperText="@string/txtViewHint_delay_min"
@@ -195,6 +200,7 @@
                     android:layout_marginEnd="4dp"
                     android:layout_marginRight="4dp"
                     android:hint="@string/txtView_work_time"
+                    android:minHeight="48dp"
                     app:counterEnabled="false"
                     app:errorEnabled="true"
                     app:helperText="@string/txtViewHint_seconds"
@@ -228,6 +234,7 @@
                     android:layout_marginEnd="4dp"
                     android:layout_marginRight="4dp"
                     android:hint="@string/txtView_rest_time"
+                    android:minHeight="48dp"
                     app:counterEnabled="false"
                     app:errorEnabled="true"
                     app:helperText="@string/txtViewHint_seconds"
@@ -261,6 +268,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
                     android:hint="@string/txtView_sets"
+                    android:minHeight="48dp"
                     app:counterEnabled="false"
                     app:errorEnabled="true"
                     app:helperText="@string/txtViewHint_cicles"
@@ -293,6 +301,7 @@
                     android:gravity="start"
                     android:text="@string/txtView_color"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:textColor="?android:attr/textColorPrimary"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -306,6 +315,7 @@
                     android:gravity="start"
                     android:text="@string/txtView_sound"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:textColor="?android:attr/textColorPrimary"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/divider_1" />
 
@@ -332,6 +342,7 @@
                     android:gravity="start"
                     android:text="@string/txtView_title_timer_settings"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:textColor="?android:attr/textColorPrimary"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/divider_4" />
 
@@ -345,6 +356,7 @@
                     android:gravity="start"
                     android:text="@string/txtView_title_signal_settings"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:textColor="?android:attr/textColorPrimary"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/divider_3" />
 
@@ -361,10 +373,7 @@
                     android:selectAllOnFocus="false"
                     android:text="@string/color_red"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                    android:textSize="12sp"
-                    app:layout_constraintEnd_toStartOf="@+id/checkBox_color_1"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline3"
                     app:layout_constraintTop_toBottomOf="@+id/txtView_title_color"
                     tools:text="@string/color_red" />
 
@@ -373,10 +382,6 @@
                     style="@style/Widget.AppCompat.CompoundButton.CheckBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginRight="24dp"
                     android:contentDescription="@string/color_blue"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
@@ -384,11 +389,8 @@
                     android:selectAllOnFocus="false"
                     android:text="@string/color_blue"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="@+id/checkBox_color_0"
-                    app:layout_constraintEnd_toStartOf="@+id/checkBox_color_2"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/checkBox_color_0"
+                    app:layout_constraintStart_toStartOf="@+id/guideline4"
                     app:layout_constraintTop_toTopOf="@+id/checkBox_color_0"
                     tools:text="@string/color_blue" />
 
@@ -397,6 +399,7 @@
                     style="@style/Widget.AppCompat.CompoundButton.CheckBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:contentDescription="@string/color_green"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
@@ -404,12 +407,8 @@
                     android:selectAllOnFocus="false"
                     android:text="@string/color_green"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/checkBox_color_1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/checkBox_color_1"
-                    app:layout_constraintTop_toTopOf="@+id/checkBox_color_1"
+                    app:layout_constraintStart_toStartOf="@+id/guideline3"
+                    app:layout_constraintTop_toBottomOf="@+id/checkBox_color_0"
                     tools:text="@string/color_green" />
 
                 <CheckBox
@@ -417,7 +416,6 @@
                     style="@style/Widget.AppCompat.CompoundButton.CheckBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
                     android:contentDescription="@string/color_yellow"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
@@ -425,11 +423,9 @@
                     android:selectAllOnFocus="false"
                     android:text="@string/color_yellow"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                    android:textSize="12sp"
-                    app:layout_constraintEnd_toStartOf="@+id/checkBox_color_4"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/checkBox_color_0"
+                    app:layout_constraintBottom_toBottomOf="@+id/checkBox_color_2"
+                    app:layout_constraintStart_toStartOf="@+id/guideline4"
+                    app:layout_constraintTop_toTopOf="@+id/checkBox_color_2"
                     tools:text="@string/color_yellow" />
 
                 <CheckBox
@@ -437,8 +433,7 @@
                     style="@style/Widget.AppCompat.CompoundButton.CheckBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="8dp"
                     android:contentDescription="@string/color_gray"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
@@ -446,12 +441,8 @@
                     android:selectAllOnFocus="false"
                     android:text="@string/color_gray"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/checkBox_color_3"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/checkBox_color_3"
-                    app:layout_constraintTop_toTopOf="@+id/checkBox_color_3"
+                    app:layout_constraintStart_toStartOf="@+id/guideline3"
+                    app:layout_constraintTop_toBottomOf="@+id/checkBox_color_2"
                     tools:text="@string/color_gray" />
 
 
@@ -469,10 +460,7 @@
                     android:singleLine="false"
                     android:text="@string/sound_0"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                    android:textSize="12sp"
-                    app:layout_constraintEnd_toStartOf="@+id/checkBox_sound_1"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline3"
                     app:layout_constraintTop_toBottomOf="@+id/txtView_title_sound"
                     tools:text="@string/sound_0" />
 
@@ -481,8 +469,6 @@
                     style="@style/Widget.AppCompat.CompoundButton.CheckBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginLeft="24dp"
                     android:contentDescription="@string/sound_1"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
@@ -490,11 +476,8 @@
                     android:selectAllOnFocus="false"
                     android:text="@string/sound_1"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="@+id/checkBox_sound_0"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/checkBox_sound_0"
+                    app:layout_constraintStart_toStartOf="@+id/guideline4"
                     app:layout_constraintTop_toTopOf="@+id/checkBox_sound_0"
                     tools:text="@string/sound_1" />
 
@@ -503,7 +486,7 @@
                     style="@style/Widget.AppCompat.CompoundButton.CheckBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="8dp"
                     android:contentDescription="@string/sound_2"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
@@ -511,10 +494,7 @@
                     android:selectAllOnFocus="false"
                     android:text="@string/sound_2"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                    android:textSize="12sp"
-                    app:layout_constraintEnd_toStartOf="@+id/checkBox_sound_3"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline3"
                     app:layout_constraintTop_toBottomOf="@+id/checkBox_sound_0"
                     tools:text="@string/sound_2" />
 
@@ -523,8 +503,6 @@
                     style="@style/Widget.AppCompat.CompoundButton.CheckBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginLeft="28dp"
                     android:contentDescription="@string/sound_4"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
@@ -532,11 +510,8 @@
                     android:selectAllOnFocus="false"
                     android:text="@string/sound_4"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="@+id/checkBox_sound_2"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/checkBox_sound_2"
+                    app:layout_constraintStart_toStartOf="@+id/guideline4"
                     app:layout_constraintTop_toTopOf="@+id/checkBox_sound_2"
                     tools:text="@string/sound_4" />
 
@@ -553,10 +528,7 @@
                     android:selectAllOnFocus="false"
                     android:text="@string/pictures_0"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                    android:textSize="12sp"
-                    app:layout_constraintEnd_toStartOf="@+id/checkBox_picture_1"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline3"
                     app:layout_constraintTop_toBottomOf="@+id/txtView_title_picture"
                     tools:text="@string/pictures_0" />
 
@@ -565,8 +537,6 @@
                     style="@style/Widget.AppCompat.CompoundButton.CheckBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginLeft="24dp"
                     android:contentDescription="@string/picture_1"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
@@ -574,11 +544,8 @@
                     android:selectAllOnFocus="false"
                     android:text="@string/picture_1"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="@+id/checkBox_picture_0"
-                    app:layout_constraintEnd_toStartOf="@+id/checkBox_picture_2"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/checkBox_picture_0"
+                    app:layout_constraintStart_toStartOf="@+id/guideline4"
                     app:layout_constraintTop_toTopOf="@+id/checkBox_picture_0"
                     tools:text="@string/picture_1" />
 
@@ -587,8 +554,7 @@
                     style="@style/Widget.AppCompat.CompoundButton.CheckBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="8dp"
                     android:contentDescription="@string/picture_2"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
@@ -596,12 +562,8 @@
                     android:selectAllOnFocus="false"
                     android:text="@string/picture_2"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/checkBox_picture_1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/checkBox_picture_1"
-                    app:layout_constraintTop_toTopOf="@+id/checkBox_picture_1"
+                    app:layout_constraintStart_toStartOf="@+id/guideline3"
+                    app:layout_constraintTop_toBottomOf="@+id/checkBox_picture_0"
                     tools:text="@string/picture_2" />
 
                 <CheckBox
@@ -616,12 +578,9 @@
                     android:selectAllOnFocus="false"
                     android:text="@string/picture_3"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/checkBox_picture_4"
-                    app:layout_constraintEnd_toStartOf="@+id/checkBox_picture_4"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/checkBox_picture_4"
+                    app:layout_constraintBottom_toBottomOf="@+id/checkBox_picture_2"
+                    app:layout_constraintStart_toStartOf="@+id/guideline4"
+                    app:layout_constraintTop_toTopOf="@+id/checkBox_picture_2"
                     tools:text="@string/picture_3" />
 
                 <CheckBox
@@ -629,9 +588,7 @@
                     style="@style/Widget.AppCompat.CompoundButton.CheckBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="8dp"
                     android:contentDescription="@string/picture_4"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
@@ -639,10 +596,7 @@
                     android:selectAllOnFocus="false"
                     android:text="@string/picture_4"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-                    android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/checkBox_picture_3"
+                    app:layout_constraintStart_toStartOf="@+id/guideline3"
                     app:layout_constraintTop_toBottomOf="@+id/checkBox_picture_2"
                     tools:text="@string/picture_4" />
 
@@ -660,6 +614,20 @@
                     android:orientation="vertical"
                     app:layout_constraintGuide_percent="0.66" />
 
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.05" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.55" />
+
                 <View
                     android:id="@+id/divider_1"
                     android:layout_width="0dp"
@@ -672,7 +640,7 @@
                     android:background="?android:attr/listDivider"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/checkBox_color_3" />
+                    app:layout_constraintTop_toBottomOf="@+id/checkBox_color_4" />
 
                 <View
                     android:id="@+id/divider_2"
@@ -699,8 +667,9 @@
                     android:layout_marginRight="24dp"
                     android:background="?android:attr/listDivider"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/checkBox_picture_3" />
+                    app:layout_constraintTop_toBottomOf="@+id/checkBox_picture_4" />
 
                 <View
                     android:id="@+id/divider_4"
@@ -715,6 +684,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtInputLayout_delayMax" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
@@ -722,6 +692,7 @@
             android:id="@+id/fab"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/start"
             android:elevation="12dp"
             android:onClick="start"
             app:backgroundTint="@color/ic_launcher_background"

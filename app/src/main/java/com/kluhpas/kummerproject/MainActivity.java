@@ -13,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -37,6 +36,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
     private Switch switch_timer_settings;
     private FloatingActionButton startFab;
     private NavigationView navigationView;
-    private Button del, update;
 
     private int count_input_selected = 0, tmp_delayMin = 0, tmp_delayMax = 0, tmp_showTime = 0, tmp_workTime = 0, tmp_restTime = 0, tmp_sets = 0;
     private boolean flag_btn_enable_checkboxes = false, flag_btn_enable_delayMin = false, flag_btn_enable_delayMax = false, flag_btn_enable_showTime = false,
@@ -70,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPref;
 
-    private List<userConfig> listConfig = new ArrayList<userConfig>();
+    private List<userConfig> listConfig = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,14 +98,14 @@ public class MainActivity extends AppCompatActivity {
         sets = findViewById(R.id.nptNumberSets);
         switch_timer_settings = findViewById(R.id.switch_timer_settings);
         navigationView = findViewById(R.id.nav_view);
-        del = findViewById(R.id.btn_del);
-        update = findViewById(R.id.btn_update);
 
-        BottomAppBar bar = (BottomAppBar) findViewById(R.id.bottomAppBar);
+        BottomAppBar bar = findViewById(R.id.bottomAppBar);
         setSupportActionBar(bar);
-        ActionBar actionbar = getSupportActionBar();
-        actionbar.setDisplayHomeAsUpEnabled(true);
-        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
+        if  (getSupportActionBar() != null) {
+            ActionBar actionbar = getSupportActionBar();
+            actionbar.setDisplayHomeAsUpEnabled(true);
+            actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
+        }
 
         startFab = findViewById(R.id.fab);
 
@@ -120,7 +119,8 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
                         // set item as selected to persist highlight
                         menuItem.setChecked(true);
 
@@ -629,8 +629,10 @@ public class MainActivity extends AppCompatActivity {
 
         editor.apply();
 
-        if (count_input_selected > 0) flag_btn_enable_checkboxes = true;
-        else flag_btn_enable_checkboxes = false;
+        if (count_input_selected > 0)
+            flag_btn_enable_checkboxes = true;
+        else
+            flag_btn_enable_checkboxes = false;
 
 
         enableButton();
@@ -720,7 +722,7 @@ public class MainActivity extends AppCompatActivity {
         final View dialogView = ((LayoutInflater) inflater).inflate(R.layout.custom_add_dialog, null);
         builder.setView(dialogView);
 
-        final EditText edt = (EditText) dialogView.findViewById(R.id.editText_input_name_config);
+        final EditText edt = dialogView.findViewById(R.id.editText_input_name_config);
 
         builder.setPositiveButton(R.string.positiveButton_add_dialog, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
@@ -728,27 +730,30 @@ public class MainActivity extends AppCompatActivity {
 
                 int i = 0;
                 boolean flag = false;
+                if (!edt.getText().toString().isEmpty()) {
+                    if (listConfig.size() > 0) {
+                        do {
+                            if (listConfig.get(i).getName_Config().compareToIgnoreCase(edt.getText().toString()) != 0) {
+                                i++;
+                            } else {
+                                Toast.makeText(getApplicationContext(), R.string.error_multiple_name, Toast.LENGTH_LONG).show();
+                                flag = true;
+                            }
 
-                if (listConfig.size() > 0) {
-                    do {
-                        if (listConfig.get(i).getName_Config().compareToIgnoreCase(edt.getText().toString()) != 0) {
-                            i++;
-                        }
-                        else {
-                            Toast.makeText(getApplicationContext(), R.string.error_multiple_name, Toast.LENGTH_LONG).show();
-                            flag = true;
-                        }
+                        } while (i < listConfig.size() && !flag);
+                    }
 
-                    } while (i < listConfig.size() && !flag);
+                    if (!flag) {
+                        userConfig tmp = new userConfig(edt.getText().toString(), color_0.isChecked(), color_1.isChecked(), color_2.isChecked(), color_3.isChecked(), color_4.isChecked(), sound_0.isChecked(), sound_1.isChecked(), sound_2.isChecked(), sound_3.isChecked(), picture_0.isChecked(), picture_1.isChecked(), picture_2.isChecked(), picture_3.isChecked(), picture_4.isChecked(), tmp_delayMin, tmp_delayMax, tmp_showTime, tmp_workTime, tmp_restTime, tmp_sets, flag_btn_enable_switch_timer_settings);
+                        listConfig.add(tmp);
+
+                        readListWriteFile();
+
+                        updateItemConfig();
+                    }
                 }
-
-                if (!flag) {
-                    userConfig tmp = new userConfig(edt.getText().toString(), color_0.isChecked(), color_1.isChecked(), color_2.isChecked(), color_3.isChecked(), color_4.isChecked(), sound_0.isChecked(), sound_1.isChecked(), sound_2.isChecked(), sound_3.isChecked(), picture_0.isChecked(), picture_1.isChecked(), picture_2.isChecked(), picture_3.isChecked(), picture_4.isChecked(), tmp_delayMin, tmp_delayMax, tmp_showTime, tmp_workTime, tmp_restTime, tmp_sets, flag_btn_enable_switch_timer_settings);
-                    listConfig.add(tmp);
-
-                    readListWriteFile();
-
-                    updateItemConfig();
+                else {
+                    Toast.makeText(getApplicationContext(), R.string.error_string_empty, Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -766,13 +771,13 @@ public class MainActivity extends AppCompatActivity {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle(R.string.title_dialog_save_config);
-        builder.setMessage(R.string.message_dialog_save_config);
+        builder.setMessage(R.string.message_dialog_delete_update_config);
 
         LayoutInflater inflater = this.getLayoutInflater();
         final View dialogView = ((LayoutInflater) inflater).inflate(R.layout.custom_update_dialog, null);
         builder.setView(dialogView);
 
-        final Spinner spnr = (Spinner) dialogView.findViewById(R.id.spnr_update);
+        final Spinner spnr = dialogView.findViewById(R.id.spnr_update);
 
         List<String> tmp = new ArrayList<>();
         for (int i = 0; i < listConfig.size(); i++) {
@@ -811,13 +816,13 @@ public class MainActivity extends AppCompatActivity {
     private void delConfig () {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.title_dialog_delete_config);
-        builder.setMessage(R.string.message_dialog_delete_config);
+        builder.setMessage(R.string.message_dialog_delete_update_config);
 
         LayoutInflater inflater = this.getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.custom_del_dialog, null);
         builder.setView(dialogView);
 
-        final Spinner spnr = (Spinner) dialogView.findViewById(R.id.spnr_del);
+        final Spinner spnr = dialogView.findViewById(R.id.spnr_del);
 
         List<String> tmp = new ArrayList<>();
         for (int i = 0; i < listConfig.size(); i++) {
@@ -876,8 +881,6 @@ public class MainActivity extends AppCompatActivity {
     private void update_flag () {
         if (count_input_selected > 0) {
             flag_btn_enable_checkboxes = true;
-            /*TextView countText = findViewById(R.id.txtView_input_count);
-            countText.setText(String.valueOf(count_input_selected));*/
         }
         else {
             flag_btn_enable_checkboxes = false;
@@ -913,12 +916,7 @@ public class MainActivity extends AppCompatActivity {
         else
             flag_btn_enable_sets = true;
 
-        if (switch_timer_settings.isChecked()) {
-            flag_btn_enable_switch_timer_settings = true;
-        }
-        else {
-            flag_btn_enable_switch_timer_settings = false;
-        }
+        flag_btn_enable_switch_timer_settings = switch_timer_settings.isChecked();
     }
 
     private void enableButton () {
@@ -1073,7 +1071,10 @@ public class MainActivity extends AppCompatActivity {
                 bufferedReader.close();
                 inputStreamReader.close();
             }
-            inputStream.close();
+            if (inputStream != null) {
+                inputStream.close();
+            }
+
         }
         catch (FileNotFoundException e) {
             Log.e("login activity", "File not found: " + e.toString());

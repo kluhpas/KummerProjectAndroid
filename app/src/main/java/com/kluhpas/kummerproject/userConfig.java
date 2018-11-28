@@ -24,10 +24,7 @@ public class userConfig {
     private int sets;
     private boolean switch_timer_settings;
 
-    public userConfig() {
-    }
-
-    public userConfig(String name_Config, boolean color_0, boolean color_1, boolean color_2, boolean color_3, boolean color_4, boolean sound_0, boolean sound_1, boolean sound_2, boolean sound_3, boolean picture_0, boolean picture_1, boolean picture_2, boolean picture_3, boolean picture_4, int delayMin, int delayMax, int showTime, int workTime, int restTime, int sets, boolean switch_timer_settings) {
+    protected userConfig(String name_Config, boolean color_0, boolean color_1, boolean color_2, boolean color_3, boolean color_4, boolean sound_0, boolean sound_1, boolean sound_2, boolean sound_3, boolean picture_0, boolean picture_1, boolean picture_2, boolean picture_3, boolean picture_4, int delayMin, int delayMax, int showTime, int workTime, int restTime, int sets, boolean switch_timer_settings) {
         this.name_Config = name_Config;
         this.color_0 = color_0;
         this.color_1 = color_1;
@@ -52,95 +49,95 @@ public class userConfig {
         this.switch_timer_settings = switch_timer_settings;
     }
 
-    public String getName_Config() {
+    protected String getName_Config() {
         return name_Config;
     }
 
-    public boolean isColor_0() {
+    protected boolean isColor_0() {
         return color_0;
     }
 
-    public boolean isColor_1() {
+    protected boolean isColor_1() {
         return color_1;
     }
 
-    public boolean isColor_2() {
+    protected boolean isColor_2() {
         return color_2;
     }
 
-    public boolean isColor_3() {
+    protected boolean isColor_3() {
         return color_3;
     }
 
-    public boolean isColor_4() {
+    protected boolean isColor_4() {
         return color_4;
     }
 
-    public boolean isSound_0() {
+    protected boolean isSound_0() {
         return sound_0;
     }
 
-    public boolean isSound_1() {
+    protected boolean isSound_1() {
         return sound_1;
     }
 
-    public boolean isSound_2() {
+    protected boolean isSound_2() {
         return sound_2;
     }
 
-    public boolean isSound_3() {
+    protected boolean isSound_3() {
         return sound_3;
     }
 
-    public boolean isPicture_0() {
+    protected boolean isPicture_0() {
         return picture_0;
     }
 
-    public boolean isPicture_1() {
+    protected boolean isPicture_1() {
         return picture_1;
     }
 
-    public boolean isPicture_2() {
+    protected boolean isPicture_2() {
         return picture_2;
     }
 
-    public boolean isPicture_3() {
+    protected boolean isPicture_3() {
         return picture_3;
     }
 
-    public boolean isPicture_4() {
+    protected boolean isPicture_4() {
         return picture_4;
     }
 
-    public int getDelayMin() {
+    protected int getDelayMin() {
         return delayMin;
     }
 
-    public int getDelayMax() {
+    protected int getDelayMax() {
         return delayMax;
     }
 
-    public int getShowTime() {
+    protected int getShowTime() {
         return showTime;
     }
 
-    public int getWorkTime() {
+    protected int getWorkTime() {
         return workTime;
     }
 
-    public int getRestTime() {
+    protected int getRestTime() {
         return restTime;
     }
 
-    public int getSets() {
+    protected int getSets() {
         return sets;
     }
 
-    public boolean isSwitch_timer_settings() {
+    protected boolean isSwitch_timer_settings() {
         return switch_timer_settings;
     }
 
-    public String getAllParamConcat () {
+    protected String getAllParamConcat () {
         String tmp = this.name_Config + ";" + this.color_0 + ";" + this.color_1 + ";" + this.color_2 + ";" + this.color_3 + ";" + this.color_4 + ";" + this.sound_0 + ";" + this.sound_1 + ";" + this.sound_2 + ";" + this.sound_3 + ";" + this.picture_0 + ";" + this.picture_1 + ";" + this.picture_2 + ";" + this.picture_3 + ";" + this.picture_4 + ";" + this.delayMin + ";" + this.delayMax + ";" + this.showTime + ";" + this.workTime + ";" + this.restTime + ";" + this.sets + ";" + this.switch_timer_settings;
         return tmp;
     }
