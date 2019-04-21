@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -56,10 +57,12 @@ public class MainActivity extends AppCompatActivity {
     private Switch switch_timer_settings;
     private FloatingActionButton startFab;
     private NavigationView navigationView;
+    private MenuItem del_config, upd_config;
 
     private int count_input_selected = 0, tmp_delayMin = 0, tmp_delayMax = 0, tmp_showTime = 0, tmp_workTime = 0, tmp_restTime = 0, tmp_sets = 0;
     private boolean flag_btn_enable_checkboxes = false, flag_btn_enable_delayMin = false, flag_btn_enable_delayMax = false, flag_btn_enable_showTime = false,
-            flag_btn_enable_workTime = false, flag_btn_enable_restTime = false, flag_btn_enable_sets = false, flag_btn_enable_switch_timer_settings = false;
+            flag_btn_enable_workTime = false, flag_btn_enable_restTime = false, flag_btn_enable_sets = false, flag_btn_enable_switch_timer_settings = false,
+            flag_list_isEmpty = true;
 
     private final String filename_config = "user_config.txt";
 
@@ -98,6 +101,8 @@ public class MainActivity extends AppCompatActivity {
         sets = findViewById(R.id.nptNumberSets);
         switch_timer_settings = findViewById(R.id.switch_timer_settings);
         navigationView = findViewById(R.id.nav_view);
+        del_config = findViewById(R.id.btn_del);
+        upd_config = findViewById(R.id.btn_update);
 
         BottomAppBar bar = findViewById(R.id.bottomAppBar);
         setSupportActionBar(bar);
@@ -109,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
 
         startFab = findViewById(R.id.fab);
 
-
         mDrawerLayout = findViewById(R.id.drawer_layout);
 
         default_config = new userConfig("Default Config", false, false, false, false, false, false, false, false, false, false, false, false, false, false, Integer.parseInt(getString(R.string.default_value_delay_min)), Integer.parseInt(getString(R.string.default_value_delay_max)), Integer.parseInt(getString(R.string.default_value_time_show)), Integer.parseInt(getString(R.string.default_value_work_time)), Integer.parseInt(getString(R.string.default_value_rest_time)), Integer.parseInt(getString(R.string.default_value_sets)), false);
@@ -120,6 +124,11 @@ public class MainActivity extends AppCompatActivity {
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+                        // uncheck all items
+                        for (int i = 0; i < navigationView.getMenu().size(); i++) {
+                            navigationView.getMenu().getItem(i).setChecked(false);
+                        }
 
                         // set item as selected to persist highlight
                         menuItem.setChecked(true);
@@ -186,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
             click_switch_timer_settings(this.switch_timer_settings);
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.clear();
-            editor.commit();
+            editor.apply();
         }
 
         update_flag();
@@ -205,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
 
                 update_tmp_var();
 
-                if (tmp_delayMin <= tmp_delayMax && tmp_delayMin > tmp_showTime) {
+                if (tmp_delayMin <= tmp_delayMax && tmp_delayMin >= tmp_showTime) {
                     SharedPreferences.Editor editor = sharedPref.edit();
                     editor.putInt("delayMin", Integer.parseInt(delayMin.getText().toString()));
                     editor.apply();
@@ -443,7 +452,16 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.app_bar_item, menu);
+        del_config = menu.findItem(R.id.btn_del);
+        upd_config = menu.findItem(R.id.btn_update);
         return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        del_config.setVisible(flag_list_isEmpty);
+        upd_config.setVisible(flag_list_isEmpty);
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -634,7 +652,6 @@ public class MainActivity extends AppCompatActivity {
         else
             flag_btn_enable_checkboxes = false;
 
-
         enableButton();
 
         countText.setText(String.valueOf(count_input_selected));
@@ -644,7 +661,6 @@ public class MainActivity extends AppCompatActivity {
     public void start(View view) {
 
         createArray();
-
         update_tmp_var ();
 
         if (tmp_showTime > 1)
@@ -655,7 +671,6 @@ public class MainActivity extends AppCompatActivity {
                 tmp_delayMax,
                 tmp_showTime
         };
-
 
         int[] timerVal = {
                 tmp_workTime,
@@ -674,7 +689,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void click_switch_timer_settings (View view) {
+    public void click_switch_timer_settings(View view) {
         if (switch_timer_settings.isChecked()) {
             flag_btn_enable_switch_timer_settings = true;
 
@@ -685,6 +700,19 @@ public class MainActivity extends AppCompatActivity {
             workTime.setEnabled(true);
             restTime.setEnabled(true);
             sets.setEnabled(true);
+
+            findViewById(R.id.txtInputLayout_workTime).setFocusableInTouchMode(true);
+            findViewById(R.id.txtInputLayout_restTime).setFocusableInTouchMode(true);
+            findViewById(R.id.txtInputLayout_sets).setFocusableInTouchMode(true);
+            workTime.setFocusableInTouchMode(true);
+            restTime.setFocusableInTouchMode(true);
+            sets.setFocusableInTouchMode(true);
+            findViewById(R.id.txtInputLayout_workTime).setFocusable(true);
+            findViewById(R.id.txtInputLayout_restTime).setFocusable(true);
+            findViewById(R.id.txtInputLayout_sets).setFocusable(true);
+            workTime.setFocusable(true);
+            restTime.setFocusable(true);
+            sets.setFocusable(true);
 
             workTime.setText(workTime.getText().toString());
             restTime.setText(restTime.getText().toString());
@@ -701,6 +729,20 @@ public class MainActivity extends AppCompatActivity {
             workTime.setEnabled(false);
             restTime.setEnabled(false);
             sets.setEnabled(false);
+
+            findViewById(R.id.txtInputLayout_workTime).setFocusableInTouchMode(false);
+            findViewById(R.id.txtInputLayout_restTime).setFocusableInTouchMode(false);
+            findViewById(R.id.txtInputLayout_sets).setFocusableInTouchMode(false);
+            workTime.setFocusableInTouchMode(false);
+            restTime.setFocusableInTouchMode(false);
+            sets.setFocusableInTouchMode(false);
+            findViewById(R.id.txtInputLayout_workTime).setFocusable(false);
+            findViewById(R.id.txtInputLayout_restTime).setFocusable(false);
+            findViewById(R.id.txtInputLayout_sets).setFocusable(false);
+            workTime.setFocusable(false);
+            restTime.setFocusable(false);
+            sets.setFocusable(false);
+
 
             workTime.setError(null);
             restTime.setError(null);
@@ -719,10 +761,18 @@ public class MainActivity extends AppCompatActivity {
         builder.setMessage(R.string.message_dialog_save_config);
 
         LayoutInflater inflater = this.getLayoutInflater();
-        final View dialogView = ((LayoutInflater) inflater).inflate(R.layout.custom_add_dialog, null);
+        final View dialogView = (inflater).inflate(R.layout.custom_add_dialog, null);
         builder.setView(dialogView);
 
         final EditText edt = dialogView.findViewById(R.id.editText_input_name_config);
+
+        edt.post(new Runnable() {
+            @Override
+            public void run() {
+                InputMethodManager keyboard = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                keyboard.showSoftInput(edt, 0);
+            }
+        });
 
         builder.setPositiveButton(R.string.positiveButton_add_dialog, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
@@ -755,11 +805,16 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     Toast.makeText(getApplicationContext(), R.string.error_string_empty, Toast.LENGTH_LONG).show();
                 }
+
+                InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(edt.getWindowToken(), 0);
             }
         });
         builder.setNegativeButton(R.string.negativeButton_dialog, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // User cancelled the dialog
+                InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(edt.getWindowToken(), 0);
             }
         });
         // Create the AlertDialog object and return it
@@ -774,7 +829,7 @@ public class MainActivity extends AppCompatActivity {
         builder.setMessage(R.string.message_dialog_delete_update_config);
 
         LayoutInflater inflater = this.getLayoutInflater();
-        final View dialogView = ((LayoutInflater) inflater).inflate(R.layout.custom_update_dialog, null);
+        final View dialogView = (inflater).inflate(R.layout.custom_update_dialog, null);
         builder.setView(dialogView);
 
         final Spinner spnr = dialogView.findViewById(R.id.spnr_update);
@@ -901,20 +956,11 @@ public class MainActivity extends AppCompatActivity {
         else
             flag_btn_enable_showTime = false;
 
-        if (workTime.getText().toString().isEmpty())
-            flag_btn_enable_workTime = false;
-        else
-            flag_btn_enable_workTime = true;
+        flag_btn_enable_workTime = !workTime.getText().toString().isEmpty();
 
-        if (restTime.getText().toString().isEmpty())
-            flag_btn_enable_restTime = false;
-        else
-            flag_btn_enable_restTime = true;
+        flag_btn_enable_restTime = !restTime.getText().toString().isEmpty();
 
-        if (sets.getText().toString().isEmpty())
-            flag_btn_enable_sets = false;
-        else
-            flag_btn_enable_sets = true;
+        flag_btn_enable_sets = !sets.getText().toString().isEmpty();
 
         flag_btn_enable_switch_timer_settings = switch_timer_settings.isChecked();
     }
@@ -1043,6 +1089,9 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
     }
 
+    /**
+     * Obiettivo: leggere i record dal file di configurazione e inserirli in una lista
+     */
     private void readFileWriteList () {
         try {
             File file = new File(getApplicationContext().getFilesDir(), filename_config);
@@ -1083,6 +1132,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Obiettivo: leggere una lista e inserire gli oggetti in un file di configurazione
+     */
     private void readListWriteFile () {
 
         Collections.sort(listConfig, new Comparator<userConfig>() {
@@ -1113,6 +1165,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Obiettivo: aggiornare la lista di configurazioni visibile nella NavigationView
+     */
     private void updateItemConfig () {
         Menu menu = navigationView.getMenu();
 
@@ -1122,6 +1177,15 @@ public class MainActivity extends AppCompatActivity {
 
         for (int i = 0; i < listConfig.size(); i++) {
             menu.add(R.id.user_config, Menu.FIRST, 0, listConfig.get(i).getName_Config()).setIcon(R.drawable.ic_directions_run_white_24dp);
+        }
+
+        if (listConfig.isEmpty()) {
+            flag_list_isEmpty = false;
+            invalidateOptionsMenu();
+        }
+        else {
+            flag_list_isEmpty = true;
+            invalidateOptionsMenu();
         }
     }
 }

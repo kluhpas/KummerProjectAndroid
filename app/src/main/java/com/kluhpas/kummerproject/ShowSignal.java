@@ -10,7 +10,6 @@ import android.os.Handler;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -23,17 +22,6 @@ import java.util.Random;
  * status bar and navigation/system bar) with user interaction.
  */
 public class ShowSignal extends AppCompatActivity {
-    /**
-     * Whether or not the system UI should be auto-hidden after
-     * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
-     */
-    private static final boolean AUTO_HIDE = true;
-
-    /**
-     * If {@link #AUTO_HIDE} is set, the number of milliseconds to wait after
-     * user interaction before hiding the system UI.
-     */
-    private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
 
     /**
      * Some older devices needs a small delay between UI widget updates
@@ -59,18 +47,6 @@ public class ShowSignal extends AppCompatActivity {
                     | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         }
     };
-    private View mControlsView;
-    private final Runnable mShowPart2Runnable = new Runnable() {
-        @Override
-        public void run() {
-            // Delayed display of UI elements
-            /*ActionBar actionBar = getSupportActionBar();
-            if (actionBar != null) {
-                actionBar.show();
-            }*/
-            mControlsView.setVisibility(View.VISIBLE);
-        }
-    };
 
     private boolean mVisible;
     private final Runnable mHideRunnable = new Runnable() {
@@ -79,29 +55,18 @@ public class ShowSignal extends AppCompatActivity {
             hide();
         }
     };
-    /**
-     * Touch listener to use for in-layout UI controls to delay hiding the
-     * system UI. This is to prevent the jarring behavior of controls going away
-     * while interacting with activity UI.
-     */
-    private final View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-            if (AUTO_HIDE) {
-                delayedHide(AUTO_HIDE_DELAY_MILLIS);
-            }
-            return false;
-        }
-    };
 
     int [] signalVal = {0, 0, 0}, timerVal = {0, 0, 0};
+
     boolean[] colorVal = {false, false, false, false, false};
     boolean[] soundVal = {false, false, false, false};
     boolean[] pictureVal = {false, false, false, false, false};
-    boolean[] signalActive = {false, false, false, false, false, false, false, false, false, false, false, false, false, false};
+    final boolean[] signalActive = {false, false, false, false, false, false, false, false, false, false, false, false, false, false};
     boolean flag_btn_enable_switch_timer_settings = false, flag = true;
 
     int sets_left = 1, sets_total = 0;
+
+    long time_left_work;
 
     MediaPlayer sound_0;
     MediaPlayer sound_1;
@@ -111,6 +76,8 @@ public class ShowSignal extends AppCompatActivity {
     TextView txtView_timer, txtView_sets;
 
     ImageView imageview;
+
+    CountDownTimer timer_work, timer_rest, timer_start;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,7 +91,6 @@ public class ShowSignal extends AppCompatActivity {
         setTitle(R.string.start);
 
         mVisible = true;
-        mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_content);
 
 
@@ -139,7 +105,6 @@ public class ShowSignal extends AppCompatActivity {
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
 
         flag_btn_enable_switch_timer_settings = getIntent().getBooleanExtra("timer_isEnable", false);
         signalVal = getIntent().getIntArrayExtra("signalVal");
@@ -161,8 +126,8 @@ public class ShowSignal extends AppCompatActivity {
         System.arraycopy(soundVal, 0, signalActive, 5, soundVal.length);
         System.arraycopy(pictureVal, 0, signalActive, 9, pictureVal.length);
 
-        new CountDownTimer(6000, 500) {
-            TextView txtView = findViewById(R.id.fullscreen_content);
+        timer_start = new CountDownTimer(6000, 500) {
+            final TextView txtView = findViewById(R.id.fullscreen_content);
 
             public void onTick(long millisUntilFinished) {
                 if ((millisUntilFinished / 1000) >= 1)
@@ -178,8 +143,6 @@ public class ShowSignal extends AppCompatActivity {
                     signalRandom();
                 }
                 else if (timerVal[2] == 0) {
-                    findViewById(R.id.txtView_sets_title).setVisibility(View.VISIBLE);
-                    findViewById(R.id.txtView_timer_title).setVisibility(View.VISIBLE);
                     timerVal[0] *= 1000;
                     timerVal[1] *= 1000;
                     timerVal[2] = -1;
@@ -188,8 +151,6 @@ public class ShowSignal extends AppCompatActivity {
                     signalRandom();
                 }
                 else {
-                    findViewById(R.id.txtView_sets_title).setVisibility(View.VISIBLE);
-                    findViewById(R.id.txtView_timer_title).setVisibility(View.VISIBLE);
                     timerVal[0] *= 1000;
                     timerVal[1] *= 1000;
                     sets_total = timerVal[2];
@@ -202,87 +163,121 @@ public class ShowSignal extends AppCompatActivity {
         }.start();
     }
 
+    /**
+     * Obiettivo: Scelta del segnale da visualizzare.
+     */
     public void signalRandom() {
-            if (flag) {
-                imageview.setImageResource(android.R.color.transparent);
-                imageview.setBackgroundColor(Color.TRANSPARENT);
-                imageview.setVisibility(View.INVISIBLE);
-                int tmp;
-                Random rnd = new Random();
-                do {
-                    tmp = rnd.nextInt(signalActive.length);
-                } while (!signalActive[tmp]);
+        int tmp;
+        Random rnd = new Random();
 
-                switch (tmp) {
-                    case 0:
-                        drawColor(tmp);
-                        break;
-                    case 1:
-                        drawColor(tmp);
-                        break;
-                    case 2:
-                        drawColor(tmp);
-                        break;
-                    case 3:
-                        drawColor(tmp);
-                        break;
-                    case 4:
-                        drawColor(tmp);
-                        break;
-                    case 5:
-                        playSound(tmp);
-                        break;
-                    case 6:
-                        playSound(tmp);
-                        break;
-                    case 7:
-                        playSound(tmp);
-                        break;
-                    case 8:
-                        playSound(tmp);
-                        break;
-                    case 9:
-                        drawPicture(tmp);
-                        break;
-                    case 10:
-                        drawPicture(tmp);
-                        break;
-                    case 11:
-                        drawPicture(tmp);
-                        break;
-                    case 12:
-                        drawPicture(tmp);
-                        break;
-                    case 13:
-                        drawPicture(tmp);
-                        break;
-                    default:
-                        break;
-                }
+        if (flag) {
+            imageview.setImageResource(android.R.color.transparent);
+            imageview.setBackgroundColor(Color.TRANSPARENT);
+            imageview.setVisibility(View.INVISIBLE);
 
-                Handler handlerClean = new Handler();
+            do {
+                tmp = rnd.nextInt(signalActive.length);
+            } while (!signalActive[tmp]);
 
-                handlerClean.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        imageview.setImageResource(android.R.color.transparent);
-                        imageview.setBackgroundColor(Color.TRANSPARENT);
-                        imageview.setVisibility(View.INVISIBLE);
-                    }
-                }, signalVal[2]);
-
-                Handler handler = new Handler();
-
-                tmp = rnd.nextInt((signalVal[1] - signalVal[0] + 1)) + signalVal[0];
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        signalRandom();
-                    }
-                }, tmp);
+            switch (tmp) {
+                case 0:
+                    drawColor(tmp);
+                    break;
+                case 1:
+                    drawColor(tmp);
+                    break;
+                case 2:
+                    drawColor(tmp);
+                    break;
+                case 3:
+                    drawColor(tmp);
+                    break;
+                case 4:
+                    drawColor(tmp);
+                    break;
+                case 5:
+                    playSound(tmp);
+                    break;
+                case 6:
+                    playSound(tmp);
+                    break;
+                case 7:
+                    playSound(tmp);
+                    break;
+                case 8:
+                    playSound(tmp);
+                    break;
+                case 9:
+                    drawPicture(tmp);
+                    break;
+                case 10:
+                    drawPicture(tmp);
+                    break;
+                case 11:
+                    drawPicture(tmp);
+                    break;
+                case 12:
+                    drawPicture(tmp);
+                    break;
+                case 13:
+                    drawPicture(tmp);
+                    break;
+                default:
+                    break;
             }
         }
 
+        cleanDisplay();
+    }
+
+    /**
+     * Obiettivo: Cancellare segnale dopo il tempo deciso dall'utente.
+     */
+    public void cleanDisplay() {
+        Handler handlerClean = new Handler();
+
+        handlerClean.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                imageview.setImageResource(android.R.color.white);
+                imageview.setBackgroundColor(Color.WHITE);
+                imageview.setVisibility(View.INVISIBLE);
+                startDelay();
+            }
+        }, signalVal[2]);
+    }
+
+    /**
+     * Obiettivo: Partenza ritardata del ciclo change/show/clean con il tempo deciso dall'utente.
+     */
+    public void startDelay() {
+        int tmp;
+        Random rnd = new Random();
+
+        if (time_left_work == 0)
+            time_left_work = 2147483647;
+
+        Handler handler = new Handler();
+        if (flag && !flag_btn_enable_switch_timer_settings)
+            tmp = rnd.nextInt((signalVal[1] - signalVal[0] + 1)) + signalVal[0];
+        else if (flag && (int)time_left_work > (signalVal[1] + signalVal[2]))
+            tmp = rnd.nextInt((signalVal[1] - signalVal[0] + 1)) + signalVal[0];
+        else if (flag && (int)time_left_work > signalVal[0])
+            tmp = signalVal[0] - signalVal[2];
+        else
+            tmp = timerVal[1] + (int)time_left_work;
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                signalRandom();
+            }
+        }, tmp);
+    }
+
+    /**
+     * Obiettivo: Visualizzare segnale (colore) a schermo.
+     * @param tmp numero segnale scelto
+     */
     public void drawColor(int tmp) {
 
         imageview.setVisibility(View.VISIBLE);
@@ -307,6 +302,10 @@ public class ShowSignal extends AppCompatActivity {
         }
     }
 
+    /**
+     * Obiettivo: Visualizzare segnale (immagine) a schermo.
+     * @param tmp numero segnale scelto
+     */
     public void drawPicture(int tmp) {
 
         imageview.setVisibility(View.VISIBLE);
@@ -331,7 +330,12 @@ public class ShowSignal extends AppCompatActivity {
         }
     }
 
+    /**
+     * Obiettivo: Visualizzare segnale (suono) a schermo.
+     * @param tmp numero segnale scelto
+     */
     public void playSound(int tmp) {
+
         switch (tmp-5) {
             case 0:
                 if (sound_0 != null)
@@ -353,12 +357,16 @@ public class ShowSignal extends AppCompatActivity {
         }
     }
 
+    /**
+     * Obiettivo: Timer del tempo di work, al termine fa iniziare il tempo di rest o termina l'activity
+     */
     public void timerWork() {
 
-        new CountDownTimer(timerVal[0], 500) {
+        timer_work = new CountDownTimer(timerVal[0], 500) {
 
             public void onTick(long millisUntilFinished) {
                 txtView_timer.setText(String.valueOf(millisUntilFinished / 1000));
+                time_left_work = millisUntilFinished;
             }
 
             public void onFinish() {
@@ -366,30 +374,38 @@ public class ShowSignal extends AppCompatActivity {
                 sets_left++;
                 txtView_timer.setText("");
                 txtView_sets.setText("");
-                findViewById(R.id.txtView_sets_title).setVisibility(View.INVISIBLE);
-                findViewById(R.id.txtView_timer_title).setVisibility(View.INVISIBLE);
 
+                imageview.setImageResource(android.R.color.white);
+                imageview.setBackgroundColor(Color.WHITE);
                 imageview.setVisibility(View.INVISIBLE);
 
+                if (sound_0 != null) sound_0.stop();
+                if (sound_1 != null) sound_1.stop();
+                if (sound_2 != null) sound_2.stop();
+                if (sound_3 != null) sound_3.stop();
+
                 if (timerVal[2] == 0)
-                    exit(mControlsView);
+                    exit();
                 else if (timerVal[1] == 0) {
                     timerWork();
                 }
                 else {
-                        flag = false;
-                        timerRest();
+                    flag = false;
+                    timerRest();
                 }
             }
         }.start();
     }
 
+    /**
+     * Obiettivo: Timer del tempo di rest, al termine fa iniziare il tempo di work
+     */
     public void timerRest() {
 
-        mContentView.setBackgroundColor(Color.TRANSPARENT);
+        mContentView.setBackgroundColor(Color.WHITE);
 
-        new CountDownTimer(timerVal[1], 500) {
-            TextView txtView = findViewById(R.id.fullscreen_content);
+        timer_rest = new CountDownTimer(timerVal[1], 500) {
+            final TextView txtView = findViewById(R.id.fullscreen_content);
             public void onTick(long millisUntilFinished) {
                 if ((millisUntilFinished / 1000) >= 1)
                     txtView.setText(String.valueOf(millisUntilFinished / 1000));
@@ -398,31 +414,31 @@ public class ShowSignal extends AppCompatActivity {
             }
 
             public void onFinish() {
-                    imageview.setImageResource(android.R.color.transparent);
-                    imageview.setBackgroundColor(Color.TRANSPARENT);
-                    flag = true;
-                    txtView.setText("");
-                    txtView.setBackgroundColor(Color.TRANSPARENT);
+                imageview.setImageResource(android.R.color.transparent);
+                imageview.setBackgroundColor(Color.TRANSPARENT);
+                flag = true;
+                txtView.setText("");
+                txtView.setBackgroundColor(Color.TRANSPARENT);
 
-                    imageview.setVisibility(View.VISIBLE)
-                    ;
-                    if (sets_total == 0){
-                        txtView_sets.setText(String.valueOf(sets_left));
-                    }
-                    else {
-                        String tmp = sets_left + "/" + sets_total;
-                        txtView_sets.setText(tmp);
-                    }
-                    findViewById(R.id.txtView_sets_title).setVisibility(View.VISIBLE);
-                    findViewById(R.id.txtView_timer_title).setVisibility(View.VISIBLE);
-                    timerWork();
-                    signalRandom();
+                imageview.setVisibility(View.VISIBLE)
+                ;
+                if (sets_total == 0){
+                    txtView_sets.setText(String.valueOf(sets_left));
                 }
+                else {
+                    String tmp = sets_left + "/" + sets_total;
+                    txtView_sets.setText(tmp);
+                }
+
+                timerWork();
+            }
         }.start();
     }
 
-    /** Called when the user taps the btnStart */
-    public void exit(View view) {
+    /**
+     * Obiettivo: Terminare l'activity inviando alla MainActivity lo stato di ritorno
+     */
+    public void exit() {
         flag = false;
 
         Intent intent = new Intent(ShowSignal.this, MainActivity.class);
@@ -456,13 +472,20 @@ public class ShowSignal extends AppCompatActivity {
 
         flag = false;
 
+        if (timer_work != null)
+            timer_work.cancel();
+        if (timer_rest != null)
+            timer_rest.cancel();
+        if (timer_start != null)
+            timer_start.cancel();
+
         super.onDestroy();
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        exit(mControlsView);
+        exit();
     }
 
     @Override
@@ -489,11 +512,9 @@ public class ShowSignal extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.hide();
         }
-        mControlsView.setVisibility(View.GONE);
         mVisible = false;
 
         // Schedule a runnable to remove the status and navigation bar after a delay
-        mHideHandler.removeCallbacks(mShowPart2Runnable);
         mHideHandler.postDelayed(mHidePart2Runnable, UI_ANIMATION_DELAY);
     }
 
@@ -504,9 +525,9 @@ public class ShowSignal extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
         mVisible = true;
 
-        // Schedule a runnable to display UI elements after a delay
         mHideHandler.removeCallbacks(mHidePart2Runnable);
-        mHideHandler.postDelayed(mShowPart2Runnable, UI_ANIMATION_DELAY);
+
+        delayedHide(3000);
     }
 
     /**

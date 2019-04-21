@@ -56,8 +56,6 @@
     <string name="btn_title_add_profile">Add</string>
     <string name="btn_title_delete_profile">Delete</string>
     <string name="feedback" translatable="false">Feedback</string>
-    <string name="time_left_title">"time: "</string>
-    <string name="sets_left_title">"sets: "</string>
     <string name="title_dialog_save_config">Save configuration</string>
     <string name="message_dialog_save_config">Give it a name</string>
     <string name="positiveButton_add_dialog">Save</string>
@@ -73,4 +71,5 @@
     <string name="error_string_empty">It can\'t be empty</string>
     <string name="start">START</string>
     <string name="title_dialog_update_config">Update configuration</string>
+    <string name="title_config_navDrawer">Configurations</string>
 </resources>

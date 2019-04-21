@@ -10,7 +10,6 @@
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,8 +22,12 @@
             android:background="@android:color/transparent"
             android:gravity="center"
             android:keepScreenOn="true"
+            android:maxLines="1"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline1"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/colorPrimary"
+            android:textSize="200sp"
+            android:textStyle="bold"
+            app:autoSizeTextType="uniform" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -41,103 +44,38 @@
             android:id="@+id/txtView_timer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
             android:background="@android:color/transparent"
             android:contentDescription="@string/txtView_timer"
             android:gravity="center"
             android:textAllCaps="false"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Overline"
             android:textColor="@color/ic_launcher_background"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/txtView_timer_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:background="@android:color/transparent"
-            android:contentDescription="@string/txtView_timer"
-            android:gravity="center"
-            android:text="@string/time_left_title"
-            android:textAllCaps="false"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Overline"
-            android:textColor="@color/ic_launcher_background"
-            android:textSize="24sp"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toStartOf="@+id/txtView_timer"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/txtView_sets_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="12dp"
-            android:background="@android:color/transparent"
-            android:contentDescription="@string/txtView_timer"
-            android:gravity="center"
-            android:text="@string/sets_left_title"
-            android:textAllCaps="false"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Overline"
-            android:textColor="@color/ic_launcher_background"
-            android:textSize="24sp"
-            android:visibility="invisible"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            app:autoSizeTextType="uniform"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/txtView_sets"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:background="@android:color/transparent"
-            android:contentDescription="@string/txtView_timer"
+            android:contentDescription="@string/txtView_sets"
             android:gravity="center"
             android:textAllCaps="false"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Overline"
             android:textColor="@color/ic_launcher_background"
-            android:textSize="24sp"
-            app:layout_constraintStart_toEndOf="@+id/txtView_sets_title"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="50sp"
+            android:textStyle="bold"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
-
-        <LinearLayout
-            android:id="@+id/fullscreen_content_controls"
-            style="?metaButtonBarStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:background="@color/black_overlay"
-            android:orientation="horizontal"
-            tools:ignore="UselessParent">
-
-            <Button
-                android:id="@+id/dummy_button"
-                style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="exit"
-                android:text="@string/dummy_button"
-                android:textSize="18sp" />
-
-        </LinearLayout>
-    </FrameLayout>
 
 </FrameLayout>

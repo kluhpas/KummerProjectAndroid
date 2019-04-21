@@ -1,30 +1,30 @@
 package com.kluhpas.kummerproject;
 
 public class userConfig {
-    private String name_Config;
-    private boolean color_0;
-    private boolean color_1;
-    private boolean color_2;
-    private boolean color_3;
-    private boolean color_4;
-    private boolean sound_0;
-    private boolean sound_1;
-    private boolean sound_2;
-    private boolean sound_3;
-    private boolean picture_0;
-    private boolean picture_1;
-    private boolean picture_2;
-    private boolean picture_3;
-    private boolean picture_4;
-    private int delayMin;
-    private int delayMax;
-    private int showTime;
-    private int workTime;
-    private int restTime;
-    private int sets;
-    private boolean switch_timer_settings;
+    private final String name_Config;
+    private final boolean color_0;
+    private final boolean color_1;
+    private final boolean color_2;
+    private final boolean color_3;
+    private final boolean color_4;
+    private final boolean sound_0;
+    private final boolean sound_1;
+    private final boolean sound_2;
+    private final boolean sound_3;
+    private final boolean picture_0;
+    private final boolean picture_1;
+    private final boolean picture_2;
+    private final boolean picture_3;
+    private final boolean picture_4;
+    private final int delayMin;
+    private final int delayMax;
+    private final int showTime;
+    private final int workTime;
+    private final int restTime;
+    private final int sets;
+    private final boolean switch_timer_settings;
 
-    protected userConfig(String name_Config, boolean color_0, boolean color_1, boolean color_2, boolean color_3, boolean color_4, boolean sound_0, boolean sound_1, boolean sound_2, boolean sound_3, boolean picture_0, boolean picture_1, boolean picture_2, boolean picture_3, boolean picture_4, int delayMin, int delayMax, int showTime, int workTime, int restTime, int sets, boolean switch_timer_settings) {
+    userConfig(String name_Config, boolean color_0, boolean color_1, boolean color_2, boolean color_3, boolean color_4, boolean sound_0, boolean sound_1, boolean sound_2, boolean sound_3, boolean picture_0, boolean picture_1, boolean picture_2, boolean picture_3, boolean picture_4, int delayMin, int delayMax, int showTime, int workTime, int restTime, int sets, boolean switch_timer_settings) {
         this.name_Config = name_Config;
         this.color_0 = color_0;
         this.color_1 = color_1;
@@ -138,7 +138,6 @@ public class userConfig {
     }
 
     protected String getAllParamConcat () {
-        String tmp = this.name_Config + ";" + this.color_0 + ";" + this.color_1 + ";" + this.color_2 + ";" + this.color_3 + ";" + this.color_4 + ";" + this.sound_0 + ";" + this.sound_1 + ";" + this.sound_2 + ";" + this.sound_3 + ";" + this.picture_0 + ";" + this.picture_1 + ";" + this.picture_2 + ";" + this.picture_3 + ";" + this.picture_4 + ";" + this.delayMin + ";" + this.delayMax + ";" + this.showTime + ";" + this.workTime + ";" + this.restTime + ";" + this.sets + ";" + this.switch_timer_settings;
-        return tmp;
+        return this.name_Config + ";" + this.color_0 + ";" + this.color_1 + ";" + this.color_2 + ";" + this.color_3 + ";" + this.color_4 + ";" + this.sound_0 + ";" + this.sound_1 + ";" + this.sound_2 + ";" + this.sound_3 + ";" + this.picture_0 + ";" + this.picture_1 + ";" + this.picture_2 + ";" + this.picture_3 + ";" + this.picture_4 + ";" + this.delayMin + ";" + this.delayMax + ";" + this.showTime + ";" + this.workTime + ";" + this.restTime + ";" + this.sets + ";" + this.switch_timer_settings;
     }
 }

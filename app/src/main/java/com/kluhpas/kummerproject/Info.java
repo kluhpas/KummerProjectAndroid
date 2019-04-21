@@ -19,7 +19,7 @@ public class Info extends AppCompatActivity {
         Intent Email = new Intent(Intent.ACTION_SEND);
         Email.setType("text/email");
         Email.putExtra(Intent.EXTRA_EMAIL, new String[] { "andrea.rota.98@gmail.com" });
-        Email.putExtra(Intent.EXTRA_SUBJECT, "Feedback");
+        Email.putExtra(Intent.EXTRA_SUBJECT, "Feedback Rapility");
         Email.putExtra(Intent.EXTRA_TEXT, "Dear ...," + "");
         startActivity(Intent.createChooser(Email, "Send Feedback:"));
     }

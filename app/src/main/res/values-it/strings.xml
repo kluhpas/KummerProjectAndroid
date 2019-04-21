@@ -44,8 +44,6 @@
     <string name="error_empty">" non può essere vuota"</string>
     <string name="btn_title_add_profile">Aggiungi</string>
     <string name="btn_title_delete_profile">Rimuovi</string>
-    <string name="time_left_title">"tempo: "</string>
-    <string name="sets_left_title">"rip: "</string>
     <string name="title_dialog_save_config">Salva configurazione</string>
     <string name="message_dialog_save_config">Dai un nome</string>
     <string name="positiveButton_add_dialog">Salva</string>
@@ -61,4 +59,5 @@
     <string name="error_string_empty">Non può essere vuota</string>
     <string name="start">START</string>
     <string name="title_dialog_update_config">Aggiorna configurazione</string>
+    <string name="title_config_navDrawer">Configurazioni</string>
 </resources>
